@@ -6,3 +6,7 @@ cmake-build*/
 *.tiled-session
 
 .DS_Store
+
+build/.cmake/api/v1/query/client-integration-vscode/
+
+build/

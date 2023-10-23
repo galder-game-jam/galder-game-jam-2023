@@ -1,8 +1,8 @@
-# Galder Game Jam 2022
-A game jam with André Søberg and Robin Berg Pettersen that found place on 11.-13.November. 
+# Galder Game Jam 2023
+A game jam with André Søberg and Robin Berg Pettersen that found place on 3.-5.november. 
 
 # The Game
-- `galder-game-jam-2022` contains simple code to showcase a very minimal 
+- `galder-game-jam-2023` contains simple code to showcase a very minimal 
   and simple game concept.
 - When compiled as `Debug` you also get:
   - The option to go to switch maps using the `F1`/`F2`/`F3`/`F4` keys.
