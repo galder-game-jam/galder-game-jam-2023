@@ -10,3 +10,5 @@ cmake-build*/
 build/.cmake/api/v1/query/client-integration-vscode/
 
 build/
+
+external_libs/fmt/.github/

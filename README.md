@@ -35,16 +35,16 @@ with a playable game on a weekend.
 
 # Libraries used
 
-| Name                                                 | Version       | Description                                          |
-|------------------------------------------------------|---------------|------------------------------------------------------|
-| [Boost DI](https://github.com/boost-ext/di)          | 1.2.0         | For Dependency Injection support.                    |
-| [Box2D](https://github.com/erincatto/box2d)          | 2.4.1         | For 2D physics.                                      |
-| [Catch2](https://github.com/catchorg/Catch2)         | 2.13.8        | For Unit Tests                                       |
-| [FakeIt](https://github.com/eranpeer/FakeIt)         | 2.3.0         | For Mocking/Faking objects for unit tests.           |
-| [fmt](https://github.com/fmtlib/fmt)                 | 9.1.0         | Library for string formatting.                       |
-| [RayLib](https://github.com/raysan5/raylib)          | 4.2.0         | For handling `Window`, `Graphics`, `Game input` etc. |
-| [raylib-cpp](https://github.com/RobLoach/raylib-cpp) | 4.2.6         | Object oriented C++ wrapper for RayLib               |
-| [Tileson](https://github.com/SSBMTonberry/tileson)   | 1.4.0 (alpha) | For parsing `Tiled` json maps.                       |
+| Name                                                 | Version | Description                                          |
+|------------------------------------------------------|---------|------------------------------------------------------|
+| [Boost DI](https://github.com/boost-ext/di)          | 1.3.0   | For Dependency Injection support.                    |
+| [Box2D](https://github.com/erincatto/box2d)          | 2.4.1   | For 2D physics.                                      |
+| [Catch2](https://github.com/catchorg/Catch2)         | 2.13.10 | For Unit Tests                                       |
+| [FakeIt](https://github.com/eranpeer/FakeIt)         | 2.4.0   | For Mocking/Faking objects for unit tests.           |
+| [fmt](https://github.com/fmtlib/fmt)                 | 10.1.1  | Library for string formatting.                       |
+| [RayLib](https://github.com/raysan5/raylib)          | 4.5.0   | For handling `Window`, `Graphics`, `Game input` etc. |
+| [raylib-cpp](https://github.com/RobLoach/raylib-cpp) | 4.5.2   | Object oriented C++ wrapper for RayLib               |
+| [Tileson](https://github.com/SSBMTonberry/tileson)   | 1.4.0   | For parsing `Tiled` json maps.                       |
 
 # Graphics
 Most of the graphics are taken from [OpenGameArt](https://opengameart.org).

@@ -713,7 +713,7 @@ class Image : public ::Image {
      *
      * @return The pixel data size of the image.
      */
-    int GetPixelDataSize() const {
+    inline int GetPixelDataSize() const {
         return ::GetPixelDataSize(width, height, format);
     }
 
@@ -723,10 +723,10 @@ class Image : public ::Image {
      * @return True or false depending on whether the Image has been loaded.
      */
     inline bool IsReady() const {
-        return data != nullptr;
+        return ::IsImageReady(*this);
     }
 
- private:
+ protected:
     void set(const ::Image& image) {
         data = image.data;
         width = image.width;

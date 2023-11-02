@@ -220,10 +220,10 @@ class Music : public ::Music {
      * @return True or false depending on whether the Music has been loaded.
      */
     inline bool IsReady() const {
-        return stream.buffer != nullptr;
+        return ::IsMusicReady(*this);
     }
 
- private:
+ protected:
     void set(const ::Music& music) {
         stream = music.stream;
         frameCount = music.frameCount;

@@ -194,8 +194,8 @@ class AudioStream : public ::AudioStream {
     /**
      * Retrieve whether or not the audio stream is ready.
      */
-    bool IsReady() {
-        return channels > 0;
+    bool IsReady() const {
+        return ::IsAudioStreamReady(*this);
     }
 
     /**
@@ -211,7 +211,7 @@ class AudioStream : public ::AudioStream {
         }
     }
 
- private:
+ protected:
     void set(const ::AudioStream& stream) {
         buffer = stream.buffer;
         processor = stream.processor;
