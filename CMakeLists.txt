@@ -53,6 +53,7 @@ include_directories(${PROJECT_SOURCE_DIR}/external_libs
                     ${PROJECT_SOURCE_DIR}/external_libs/raylib-cpp/include
                     ${PROJECT_SOURCE_DIR}/external_libs/fmt/include
                     ${PROJECT_SOURCE_DIR}/external_libs/box2d/include
+                    ${PROJECT_SOURCE_DIR}/external_libs/GameNetworkingSockets/include
         )
 add_subdirectory(external_libs/fmt)
 add_subdirectory(external_libs/raylib)

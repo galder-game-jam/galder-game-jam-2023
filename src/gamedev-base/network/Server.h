@@ -8,6 +8,12 @@
 #include "../interfaces/network/IServer.h"
 #include "../interfaces/network/IIpAddressResolver.h"
 
+#include <steam/steamnetworkingsockets.h>
+#include <steam/isteamnetworkingutils.h>
+#ifndef STEAMNETWORKINGSOCKETS_OPENSOURCE
+#include <steam/steam_api.h>
+#endif
+
 namespace ggj
 {
     
@@ -19,11 +25,18 @@ namespace ggj
             
             }
             
-            ServerHostInfo run(uint16_t port, const std::string &name) const override;
+            ServerHostInfo run(uint16_t port, const std::string &name) override;
             void stop() const override;
             
         private:
             IIpAddressResolver &m_resolver;
+            ServerHostInfo m_info{};
+            
+            //Steam networking stuff
+            HSteamListenSocket m_listenSocket;
+            HSteamNetPollGroup m_pollGroup;
+            ISteamNetworkingSockets *m_netInterface;
+            std::map< HSteamNetConnection, Client_t > m_mapClients;
     };
     
 } // ggj
