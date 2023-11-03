@@ -348,8 +348,8 @@
                  "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
-                 "x":240,
-                 "y":352
+                 "x":472.5,
+                 "y":77.5
                 }, 
                 {
                  "height":16,
@@ -1541,6 +1541,159 @@
                  "width":16,
                  "x":48,
                  "y":32
+                }, 
+                {
+                 "height":16,
+                 "id":213,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"is_trigger",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"jumpolini.png"
+                        }, 
+                        {
+                         "name":"userdata_force_y",
+                         "type":"float",
+                         "value":-5
+                        }, 
+                        {
+                         "name":"userdata_objecttype",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"userdata_objecttype_enum",
+                         "propertytype":"ObjectType",
+                         "type":"int",
+                         "value":3
+                        }],
+                 "rotation":0,
+                 "type":"PhysicsObject",
+                 "visible":true,
+                 "width":16,
+                 "x":112,
+                 "y":896
+                },
+            
+                {
+                 "height":16,
+                 "id":214,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"is_trigger",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"jumpolini.png"
+                        }, 
+                        {
+                         "name":"userdata_force_y",
+                         "type":"float",
+                         "value":-5
+                        }, 
+                        {
+                         "name":"userdata_objecttype",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"userdata_objecttype_enum",
+                         "propertytype":"ObjectType",
+                         "type":"int",
+                         "value":3
+                        }],
+                 "rotation":0,
+                 "type":"PhysicsObject",
+                 "visible":true,
+                 "width":16,
+                 "x":128,
+                 "y":896
+                }, 
+                {
+                 "height":16,
+                 "id":215,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"is_trigger",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"jumpolini.png"
+                        }, 
+                        {
+                         "name":"userdata_force_y",
+                         "type":"float",
+                         "value":-5
+                        }, 
+                        {
+                         "name":"userdata_objecttype",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"userdata_objecttype_enum",
+                         "propertytype":"ObjectType",
+                         "type":"int",
+                         "value":3
+                        }],
+                 "rotation":0,
+                 "type":"PhysicsObject",
+                 "visible":true,
+                 "width":16,
+                 "x":816,
+                 "y":896
+                }, 
+                {
+                 "height":16,
+                 "id":216,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"is_trigger",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"jumpolini.png"
+                        }, 
+                        {
+                         "name":"userdata_force_y",
+                         "type":"float",
+                         "value":-5
+                        }, 
+                        {
+                         "name":"userdata_objecttype",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"userdata_objecttype_enum",
+                         "propertytype":"ObjectType",
+                         "type":"int",
+                         "value":3
+                        }],
+                 "rotation":0,
+                 "type":"PhysicsObject",
+                 "visible":true,
+                 "width":16,
+                 "x":832,
+                 "y":896
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1620,7 +1773,7 @@
          "y":0
         }],
  "nextlayerid":8,
- "nextobjectid":213,
+ "nextobjectid":217,
  "orientation":"orthogonal",
  "properties":[
         {
