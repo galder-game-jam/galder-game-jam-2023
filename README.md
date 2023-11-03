@@ -54,11 +54,9 @@ The following graphics from [OpenGameArt](https://opengameart.org) are used in t
 
 | Name                            | Creator         | License       | URL                                                                  |
 | ------------------------------- | --------------- | ------------- | -------------------------------------------------------------------- |
-| characters.png/sheet.png        | Buch            | Public Domain | https://opengameart.org/content/a-platformer-in-the-forest           |
 | gem1/gem2/gem3/gem4             | Clint Bellanger | CC-BY-SA 3.0  | https://opengameart.org/content/gem-icons                            |
 | bat.png                         | bagzie          | OGA-BY 3.0    | https://opengameart.org/content/bat-sprite                           |
 | ninja.png                       | needcoffee      | Public Domain | https://opengameart.org/content/needcoffee%E2%80%99s-mostrichgrinser |
-| boulder-small.png               | Kutejnikov      | Public Domain | https://opengameart.org/content/rock-with-a-face                     |
 | greggman-backgrounds            | Zeyu Ren        | CC-BY 3.0     | https://opengameart.org/content/backgrounds-for-2d-platformers       |
 | OPP Jungle Tiles                | Hapiel          | CC-BY 3.0     | https://opengameart.org/content/opp-jungle-tiles                     |
 | 700+ RPG Icons                  | Lorc            | CC-BY 3.0     | https://opengameart.org/content/700-rpg-icons                        |
