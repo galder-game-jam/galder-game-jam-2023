@@ -13,10 +13,9 @@ namespace ggj
     {
         public:
             virtual ~IIpAddressResolver() noexcept = default;
-            virtual const std::string getLocalIpAddress() const = 0;
-            virtual const std::string getPublicIpAddress() const = 0;
+            [[nodiscard]] virtual std::string getLocalIpAddress() const = 0;
+            [[nodiscard]] virtual std::string getPublicIpAddress() const = 0;
     };
-    
-} // dev
+}
 
 #endif //GALDER_GAME_JAM_2023_PROJECT_IIPADDRESSRESOLVER_H

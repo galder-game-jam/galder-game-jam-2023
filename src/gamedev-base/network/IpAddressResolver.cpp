@@ -14,7 +14,7 @@
 #include <cstring>
 #include <iostream>
 
-const std::string ggj::IpAddressResolver::getLocalIpAddress() const
+std::string ggj::IpAddressResolver::getLocalIpAddress() const
 {
     int sock = socket(PF_INET, SOCK_DGRAM, 0);
     sockaddr_in loopback{};
@@ -50,14 +50,15 @@ const std::string ggj::IpAddressResolver::getLocalIpAddress() const
         return "";
     }
     
-    return std::string(buf);
+    return {buf};
 }
-const std::string ggj::IpAddressResolver::getPublicIpAddress() const
+
+std::string ggj::IpAddressResolver::getPublicIpAddress() const
 {
     char addr[256];
     size_t s = sizeof(addr);
     if (ipify(addr, s))
         return "";
     
-    return std::string(addr);
+    return {addr};
 }

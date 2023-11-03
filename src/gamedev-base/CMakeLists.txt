@@ -6,4 +6,9 @@ add_library(gamedev_base GameDevBase.h system/ConsoleLogger.cpp
         interfaces/managers/ITextureManager.h interfaces/system/IGameObject.h
         system/Vector2D.hpp interfaces/managers/IDebugManager.h system/Colori.hpp
         interfaces/managers/IAnimationManager.h network/IpAddressResolver.cpp network/IpAddressResolver.cpp
-        network/ipify.h network/ipify.cpp)
+        network/ipify.h network/ipify.cpp
+        interfaces/network/IServer.h
+        interfaces/network/IClient.h
+        enums/ConnectionStatus.h
+        data/ServerHostInfo.hpp
+        data/IpAddress.hpp)
