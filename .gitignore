@@ -12,3 +12,5 @@ build/.cmake/api/v1/query/client-integration-vscode/
 build/
 
 external_libs/fmt/.github/
+
+external_libs/GameNetworkingSockets/src/external/ed25519-donna/fuzz/build-nix.php
