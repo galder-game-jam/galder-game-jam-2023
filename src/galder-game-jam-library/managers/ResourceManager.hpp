@@ -112,7 +112,7 @@ namespace ggj
         add(ggj::ResourceName::GraphicsShootFireFire2, "graphics/shoot/fire/fire/fire2.png");
         add(ggj::ResourceName::GraphicsTilesJungleTerrain, "graphics/tiles/jungle_terrain.png");
         add(ggj::ResourceName::GraphicsTilesObjects, "graphics/tiles/objects.png");
-
+        add(ggj::ResourceName::GraphicsCoin, "graphics/coin/coin_full.png");
     }
 
     template<class T>

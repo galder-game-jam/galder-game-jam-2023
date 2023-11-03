@@ -15,6 +15,7 @@ namespace ggj
         Enemy = 2,
         Trap = 3,
         PowerUp = 4,
+        Coin = 5,
     };
 
 } // ggj

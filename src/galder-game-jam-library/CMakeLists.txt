@@ -11,4 +11,5 @@ add_library(galder-game-jam-library GalderGameJamLibrary.h managers/GameManager.
         managers/AnimationManager.cpp managers/AnimationManager.h graphics/Animation.cpp
         graphics/Animation.h graphics/Frame.hpp enums/AnimationName.h enums/PlayerState.h
         system/UserData.hpp enums/ObjectType.h interfaces/manager/IUserDataManager.h managers/UserDataManager.hpp
-        game/enemies/Bat.cpp game/enemies/Bat.h system/ObjectGeneratorData.hpp game/enemies/Snake.cpp game/enemies/Snake.h)
+        game/enemies/Bat.cpp game/enemies/Bat.h system/ObjectGeneratorData.hpp
+        game/enemies/Snake.cpp game/enemies/Snake.h game/collectibles/Coin.cpp game/collectibles/Coin.h)
