@@ -101,7 +101,7 @@ namespace ggj
         GraphicsShootFireFire2 = 174,
         GraphicsTilesJungleTerrain = 175,
         GraphicsTilesObjects = 176,
-        
+        GraphicsCoin = 177,
     };
 }
 

@@ -87,6 +87,7 @@ namespace ggj
         ShootFireFire2 = 174,
         TilesJungleTerrain = 175,
         TilesObjects = 176,
+        Coin = 177,
     };
 }
 #endif //GAME_DEV_TEMPLATE_TEXTURENAME_H
