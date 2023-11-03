@@ -22,6 +22,9 @@
 #include "game/enemies/Bat.h"
 #include "game/enemies/Snake.h"
 
+// Collectibles
+#include "game/collectibles/Coin.h"
+
 //Managers
 #include "managers/AnimationManager.h"
 #include "managers/CollisionManager.h"
