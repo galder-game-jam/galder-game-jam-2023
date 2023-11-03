@@ -23,6 +23,8 @@
 #include "interfaces/system/ITimer.h"
 #include "interfaces/system/IWorld.h"
 
+#include "interfaces/network/IIpAddressResolver.h"
+
 //System
 #include "system/Colori.hpp"
 #include "system/ConsoleLogger.h"
@@ -30,5 +32,8 @@
 #include "system/ExecutableInfo.h"
 #include "system/Timer.h"
 #include "system/Vector2D.hpp"
+
+//Network
+#include "network/IpAddressResolver.h"
 
 #endif //GAME_DEV_TEMPLATE_GAMEDEVBASE_H
