@@ -88,7 +88,8 @@ namespace ggj
         if (m_input.keyPressed(ggj::KeyboardKey::F1)) m_currentStageIndex = 1;
         if (m_input.keyPressed(ggj::KeyboardKey::F2)) m_currentStageIndex = 2;
         if (m_input.keyPressed(ggj::KeyboardKey::F3)) m_currentStageIndex = 3;
-        if (m_input.keyPressed(ggj::KeyboardKey::F4)) m_currentStageIndex = FINAL_MAP_ID;
+        if (m_input.keyPressed(ggj::KeyboardKey::F4)) m_currentStageIndex = 4;
+        if (m_input.keyPressed(ggj::KeyboardKey::F5)) m_currentStageIndex = FINAL_MAP_ID;
         #endif
 
         if (m_currentStageIndex == NO_MAP_ID)
