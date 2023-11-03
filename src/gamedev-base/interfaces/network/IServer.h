@@ -16,7 +16,7 @@ namespace ggj
         public:
             virtual ~IServer() noexcept = default;
             [[nodiscard]] virtual ServerHostInfo run(uint16_t port, const std::string& name ) = 0;
-            virtual void stop() const = 0;
+            virtual void stop() = 0;
     };
 }
 
