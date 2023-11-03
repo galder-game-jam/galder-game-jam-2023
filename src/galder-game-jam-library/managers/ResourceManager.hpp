@@ -35,13 +35,6 @@ namespace ggj
     void ResourceManager<T>::initialize()
     {
         add(ggj::ResourceName::GraphicsPlayer, "graphics/characters.png");
-        add(ggj::ResourceName::GraphicsPlayerSimple, "graphics/player-simple.png");
-        add(ggj::ResourceName::GraphicsTileset1, "graphics/sheet.png");
-        add(ggj::ResourceName::GraphicsTileset2, "graphics/tiles.png");
-        add(ggj::ResourceName::GraphicsBoulderSmall, "graphics/boulder-small.png");
-        add(ggj::ResourceName::GraphicsBoulderMedium, "graphics/boulder-medium.png");
-        add(ggj::ResourceName::GraphicsBoulderBig, "graphics/boulder-big.png");
-        add(ggj::ResourceName::GraphicsAndre, "graphics/andre.png");
         add(ggj::ResourceName::GraphicsMagicCliffsTileset, "graphics/magic-cliffs.png");
         add(ggj::ResourceName::GraphicsEnemyBat, "graphics/bat.png");
         add(ggj::ResourceName::GraphicsCrate, "graphics/crate.png");

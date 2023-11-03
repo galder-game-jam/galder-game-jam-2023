@@ -11,13 +11,6 @@ namespace ggj
     {
         None = 0,
         Player = 1,
-        BoulderSmall = 2,
-        BoulderMedium = 3,
-        BoulderBig = 4,
-        Tileset1 = 5,
-        Tileset2 = 6,
-        Andre = 7,
-        PlayerSimple = 8,
         MagicCliffsTileset = 9,
         Bat = 10,
         Crate = 11,
