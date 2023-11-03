@@ -6,6 +6,7 @@
 #define GALDER_GAME_JAM_2023_PROJECT_ICLIENT_H
 
 #include "../../enums/ConnectionStatus.h"
+#include "../../data/ServerHostInfo.hpp"
 #include <cstdint>
 namespace ggj
 {
@@ -14,6 +15,7 @@ namespace ggj
         public:
             virtual ~IClient() noexcept = default;
             [[nodiscard]] virtual ConnectionStatus connect(uint16_t port) const = 0;
+            [[nodiscard]] virtual ServerHostInfo getServerInfo() const = 0;
             virtual void ping() const = 0;
             virtual void disconnect() const = 0;
     };

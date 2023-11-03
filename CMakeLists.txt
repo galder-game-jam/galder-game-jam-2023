@@ -58,7 +58,7 @@ add_subdirectory(external_libs/fmt)
 add_subdirectory(external_libs/raylib)
 add_subdirectory(external_libs/raylib-cpp)
 add_subdirectory(external_libs/box2d)
-# add_subdirectory(external_libs/GameNetworkingSockets)
+add_subdirectory(external_libs/GameNetworkingSockets)
 add_subdirectory(src)
 add_subdirectory(tests)
 
