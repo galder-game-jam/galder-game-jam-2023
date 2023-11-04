@@ -85,6 +85,7 @@ namespace ggj
         GraphicsTilesJungleTerrain = 175,
         GraphicsTilesObjects = 176,
         GraphicsCoin = 177,
+        GraphicsPortal = 178,
     };
 }
 

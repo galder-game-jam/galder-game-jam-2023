@@ -4,9 +4,7 @@ namespace ggj
 {
     void Portal::beginContact(PhysicsObject *a, PhysicsObject *b, b2Contact *contact)
     {
-        UserData* userDataB = b->getUserData();
-
-        if(b->getUserData()->getObjectType() == ObjectType::Enemy)
+        if(b->getUserData()->getObjectType() == ObjectType::Player)
         {
             teleport();
         }

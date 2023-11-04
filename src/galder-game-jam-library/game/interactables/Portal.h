@@ -18,7 +18,7 @@ namespace ggj
               m_velocity{velocity}
             {
                 m_body->SetFixedRotation(true);
-                m_animation = m_animationManager.getAnimation(AnimationName::PortalActive);
+                m_animation = m_animationManager.getAnimation(AnimationName::PortalIdle);
                 m_body->SetLinearVelocity({m_velocity.x, m_velocity.y});
                 m_flip = m_velocity.x < 0.f;
             }
@@ -33,7 +33,5 @@ namespace ggj
             Animation m_animation;
             raylib::Vector2 m_velocity {0.f, 0.f};
     };
-
 } // ggj
-
 #endif //GAME_DEV_TEMPLATE_PORTAL_H
