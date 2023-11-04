@@ -27,16 +27,14 @@ namespace ggj
         }).base(), s.end());
     }
     
-    ServerHostInfo Server::run(uint16_t port, const std::string &name)
+    void Server::run()
     {
-        std::string localIp = m_resolver.getLocalIpAddress();
-        std::string publicIp = m_resolver.getPublicIpAddress();
-        
-        m_info = {port, {localIp, publicIp}, name};
-        
         // Select instance to use.  For now we'll always use the default.
         // But we could use SteamGameServerNetworkingSockets() on Steam.
         m_netInterface = SteamNetworkingSockets();
+        
+        uint16_t port = m_info.getPort();
+        std::string name = m_info.getName();
         
         // Start listening
         SteamNetworkingIPAddr serverLocalAddr;
@@ -49,11 +47,17 @@ namespace ggj
         m_listenSocket = m_netInterface->CreateListenSocketIP( serverLocalAddr, 1, &opt );
         
         if ( m_listenSocket == k_HSteamListenSocket_Invalid )
-            m_logger.error(fmt::format("Failed to listen on port %d", port));
+            m_logger.error(fmt::format("Failed to listen on port {0}", port));
+        
         m_pollGroup = m_netInterface->CreatePollGroup();
+        
         if ( m_pollGroup == k_HSteamNetPollGroup_Invalid )
-            m_logger.error(fmt::format("Failed to listen on port %d", port));
-        m_logger.information(fmt::format( "Server listening on port %d\n", port ));
+            m_logger.error(fmt::format("Failed to listen on port {0}", port));
+        
+        m_logger.information(fmt::format("Server listening on port {0}", port));
+        m_logger.information(fmt::format("Server local IP: {0}", m_info.getIpAddress().getLocalIp()));
+        m_logger.information(fmt::format("Server public IP: {0}", m_info.getIpAddress().getPublicIp()));
+        m_logger.information(fmt::format("Server name: {0}", name ));
         
         while ( !m_quit )
         {
@@ -84,8 +88,6 @@ namespace ggj
         
         m_netInterface->DestroyPollGroup( m_pollGroup );
         m_pollGroup = k_HSteamNetPollGroup_Invalid;
-        
-        return m_info;
     }
     
     void Server::stop()
@@ -251,7 +253,7 @@ namespace ggj
                     // Spew something to our own log.  Note that because we put their nick
                     // as the connection description, it will show up, along with their
                     // transport-specific data (e.g. their IP address)
-                    m_logger.information(fmt::format("Connection %s %s, reason %d: %s\n",
+                    m_logger.information(fmt::format("Connection {0} {1}, reason {2}: {3}\n",
                             pInfo->m_info.m_szConnectionDescription,
                             pszDebugLogAction,
                             pInfo->m_info.m_eEndReason,
@@ -349,6 +351,17 @@ namespace ggj
                 // Silences -Wswitch
                 break;
         }
+    }
+    void Server::initialize(uint16_t port, const std::string &name)
+    {
+        std::string localIp = m_resolver.getLocalIpAddress();
+        std::string publicIp = m_resolver.getPublicIpAddress();
+        m_info = {port, {localIp, publicIp}, name};
+        
+        SteamDatagramErrMsg errMsg;
+        if (!GameNetworkingSockets_Init( nullptr, errMsg ))
+            m_logger.error(fmt::format("GameNetworkingSockets_Init failed.  %s", errMsg));
+        
     }
     
 } // ggj

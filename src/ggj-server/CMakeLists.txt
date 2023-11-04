@@ -3,6 +3,10 @@ project(ggj-server VERSION 0.1.0)
 
 # set(CMAKE_CXX_STANDARD 20)
 
+# Build into same bin folder as SteamNetworkingSockets
+# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
 if(LINUX)
     add_executable(ggj-server main.cpp)
     target_link_libraries(ggj-server galder-game-jam-library gamedev_base raylib_cpp raylib fmt box2d

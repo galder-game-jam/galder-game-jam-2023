@@ -10,7 +10,6 @@ if(NOT CMAKE_BUILD_TYPE)
             "Choose the type of build, options are: Debug Release
 RelWithDebInfo MinSizeRel."
             FORCE)
-
 endif(NOT CMAKE_BUILD_TYPE)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -45,6 +44,8 @@ elseif(WIN32)
     endif()
 endif()
 
+#set (CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+#set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 # Makes sure everything is statically linked
 set(BUILD_SHARED_LIBS OFF)
 

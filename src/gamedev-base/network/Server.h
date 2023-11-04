@@ -32,8 +32,8 @@ namespace ggj
             {
             
             }
-            
-            ServerHostInfo run(uint16_t port, const std::string &name) override;
+            void initialize(uint16_t port, const std::string &name) override;
+            void run() override;
             void stop() override;
             
             void onSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t *pInfo);
