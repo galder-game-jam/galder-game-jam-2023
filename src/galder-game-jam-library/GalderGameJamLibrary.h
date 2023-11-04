@@ -42,8 +42,8 @@
 #include "managers/WorldManager.h"
 
 //Network
-#include "network/GalderClient.h"
-#include "network/GalderServer.h"
+#include "network/GalderClient.hpp"
+#include "network/GalderServer.hpp"
 
 //System
 #include "system/World.h"

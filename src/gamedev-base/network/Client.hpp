@@ -2,31 +2,74 @@
 // Created by robin on 03.11.23.
 //
 
-#include "Client.h"
+#ifndef GALDER_GAME_JAM_2023_PROJECT_CLIENT_HPP
+#define GALDER_GAME_JAM_2023_PROJECT_CLIENT_HPP
+
+#include "../interfaces/system/ILogger.h"
+#include "../interfaces/network/IIpAddressResolver.h"
+#include "../interfaces/network/IClient.h"
+#include "fmt/format.h"
+#include "StringTrim.hpp"
+
+#include <steam/steamnetworkingsockets.h>
+#include <steam/isteamnetworkingutils.h>
+#ifndef STEAMNETWORKINGSOCKETS_OPENSOURCE
+#include <steam/steam_api.h>
+#endif
+
+#include <chrono>
+#include <thread>
+#include <mutex>
+#include <map>
+#include <queue>
 
 namespace ggj
 {
-    template<class TClientData, class TServerData>
-    static Client<TClientData, TServerData> *callbackInstance;
-    
-    template<class TClientData, class TServerData>
-    static void SteamNetConnectionStatusChangedCallback( SteamNetConnectionStatusChangedCallback_t *pInfo )
+    template <class TClientData, class TServerData>
+    class Client : public IClient<TClientData, TServerData>
     {
-        callbackInstance<TClientData, TServerData>->onSteamNetConnectionStatusChanged(pInfo);
-    }
+        public:
+            Client(ILogger &logger, IIpAddressResolver &ipAddressResolver) : m_logger {logger}, m_resolver {ipAddressResolver}
+            {
+            
+            }
+            bool initialize() override;
+            void connect(uint16_t port, std::string ipAddress) override;
+            [[nodiscard]] ServerHostInfo getServerInfo() const override;
+            void ping() const override;
+            void disconnect() const override;
+            
+            void onSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t *pInfo);
+            
+        protected:
+            bool send(const TClientData &data) override;
+            bool receive(const TServerData &data) override;
+        
+        private:
+            ILogger &m_logger;
+            IIpAddressResolver &m_resolver;
+            bool m_quit = false;
+            
+            //Steam network stuff
+            ISteamNetworkingSockets *m_netInterface;
+            HSteamNetConnection m_connection;
+            std::mutex m_mutexUserInputQueue;
+            std::queue< std::string > m_queueUserInput;
+            //std::thread *m_threadUserInput = nullptr;
+            
+            void pollIncomingMessages();
+            void pollConnectionStateChanges();
+            void pollLocalUserInput();
+            bool localUserInputGetNext(std::string &result);
+    };
     
-    // trim from start (in place)
-    static inline void ltrim(std::string &s) {
-        s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](int ch) {
-            return !std::isspace(ch);
-        }));
-    }
-
-    // trim from end (in place)
-    static inline void rtrim(std::string &s) {
-        s.erase(std::find_if(s.rbegin(), s.rend(), [](int ch) {
-            return !std::isspace(ch);
-        }).base(), s.end());
+    template<class TClientData, class TServerData>
+    static Client<TClientData, TServerData> *clientCallbackInstance;
+    
+    template<class TClientData, class TServerData>
+    static void SteamClientNetConnectionStatusChangedCallback( SteamNetConnectionStatusChangedCallback_t *pInfo )
+    {
+        clientCallbackInstance<TClientData, TServerData>->onSteamNetConnectionStatusChanged(pInfo);
     }
     
     template<class TClientData, class TServerData>
@@ -44,7 +87,7 @@ namespace ggj
         serverAddr.ToString( szAddr, sizeof(szAddr), true );
         m_logger.information(fmt::format("Connecting to chat server at {0}", szAddr));
         SteamNetworkingConfigValue_t opt;
-        opt.SetPtr( k_ESteamNetworkingConfig_Callback_ConnectionStatusChanged, (void*)SteamNetConnectionStatusChangedCallback );
+        opt.SetPtr( k_ESteamNetworkingConfig_Callback_ConnectionStatusChanged, (void*)SteamClientNetConnectionStatusChangedCallback<TClientData, TServerData> );
         m_connection = m_netInterface->ConnectByIPAddress( serverAddr, 1, &opt );
         if ( m_connection == k_HSteamNetConnection_Invalid )
             m_logger.critical(fmt::format("Failed to create connection"));
@@ -160,7 +203,7 @@ namespace ggj
     template<class TClientData, class TServerData>
     void Client<TClientData, TServerData>::pollConnectionStateChanges()
     {
-        callbackInstance<TClientData, TServerData> = this;
+        clientCallbackInstance<TClientData, TServerData> = this;
         m_netInterface->RunCallbacks();
     }
     
@@ -230,4 +273,7 @@ namespace ggj
     {
         return false;
     }
+    
 } // ggj
+
+#endif //GALDER_GAME_JAM_2023_PROJECT_CLIENT_HPP

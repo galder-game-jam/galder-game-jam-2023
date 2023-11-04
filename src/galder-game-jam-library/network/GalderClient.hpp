@@ -2,8 +2,8 @@
 // Created by robin on 04.11.23.
 //
 
-#ifndef GALDER_GAME_JAM_2023_PROJECT_GALDERCLIENT_H
-#define GALDER_GAME_JAM_2023_PROJECT_GALDERCLIENT_H
+#ifndef GALDER_GAME_JAM_2023_PROJECT_GALDERCLIENT_HPP
+#define GALDER_GAME_JAM_2023_PROJECT_GALDERCLIENT_HPP
 
 #include "../../gamedev-base/GameDevBase.h"
 #include "../data/PlayerNetworkData.hpp"
@@ -12,15 +12,16 @@
 namespace ggj
 {
     
-    class GalderClient : ggj::Client<PlayerNetworkData, ServerNetworkData>
+    class GalderClient : public ggj::Client<PlayerNetworkData, ServerNetworkData>
     {
+        public:
             GalderClient(ILogger &logger, IIpAddressResolver &ipAddressResolver) :
                     ggj::Client<PlayerNetworkData, ServerNetworkData>(logger, ipAddressResolver)
             {
-                
+            
             }
     };
     
 } // ggj
 
-#endif //GALDER_GAME_JAM_2023_PROJECT_GALDERCLIENT_H
+#endif //GALDER_GAME_JAM_2023_PROJECT_GALDERCLIENT_HPP

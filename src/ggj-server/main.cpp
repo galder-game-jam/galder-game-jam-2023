@@ -46,6 +46,7 @@ int testNetworking()
         app.logger.critical("App initialization failed!");
     
     ggj::GalderServer server {app.logger, app.ipResolver};
+    ggj::GalderClient client {app.logger, app.ipResolver};
 //    app.server.initialize(13337, "Galders hjem");
 //    app.server.run();
     

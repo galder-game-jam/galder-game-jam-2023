@@ -2,32 +2,83 @@
 // Created by robin on 03.11.23.
 //
 
-#include "Server.h"
+#ifndef GALDER_GAME_JAM_2023_PROJECT_SERVER_HPP
+#define GALDER_GAME_JAM_2023_PROJECT_SERVER_HPP
+
+#include "../interfaces/system/ILogger.h"
+#include "../interfaces/network/IServer.h"
+#include "../interfaces/network/IIpAddressResolver.h"
+#include "../data/ClientInfo.hpp"
+#include "fmt/format.h"
+#include "StringTrim.hpp"
+
+#include <steam/steamnetworkingsockets.h>
+#include <steam/isteamnetworkingutils.h>
+#ifndef STEAMNETWORKINGSOCKETS_OPENSOURCE
+#include <steam/steam_api.h>
+#endif
+
+#include <chrono>
+#include <thread>
+#include <mutex>
+#include <map>
+#include <queue>
 
 namespace ggj
 {
-    template<class TServerData, class TClientData>
-    static Server<TServerData, TClientData> *callbackInstance; //TODO: Find a cleaner solution than using a static instance
-    
-    template<class TServerData, class TClientData>
-    static void SteamNetConnectionStatusChangedCallback( SteamNetConnectionStatusChangedCallback_t *pInfo )
+    template <class TServerData, class TClientData>
+    class Server : public IServer<TServerData, TClientData>
     {
-        callbackInstance<TServerData, TClientData>->onSteamNetConnectionStatusChanged( pInfo );
+        public:
+            Server(ILogger &logger, IIpAddressResolver &ipAddressResolver) : m_logger {logger}, m_resolver {ipAddressResolver}
+            {
+            
+            }
+            bool initialize(uint16_t port, const std::string &name) override;
+            void run() override;
+            void stop() override;
+            
+            void onSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t *pInfo);
+            
+        protected:
+            bool send(const TServerData &data) override;
+            bool receive(const TClientData &data) override;
+        
+        private:
+            ILogger &m_logger;
+            IIpAddressResolver &m_resolver;
+            ServerHostInfo m_info{};
+            
+            //Steam networking stuff
+            HSteamListenSocket m_listenSocket{};
+            HSteamNetPollGroup m_pollGroup{};
+            ISteamNetworkingSockets *m_netInterface {nullptr};
+            std::map<HSteamNetConnection, ClientInfo> m_mapClients;
+            std::mutex m_mutexUserInputQueue;
+            std::queue< std::string > m_queueUserInput;
+            std::thread *m_threadUserInput = nullptr;
+            
+            bool m_quit = false;
+            
+            void pollIncomingMessages();
+            void sendStringToClient(HSteamNetConnection conn, const char *str);
+            void sendStringToAllClients(const char *str, HSteamNetConnection except = k_HSteamNetConnection_Invalid);
+            void setClientNick(HSteamNetConnection conn, const std::string &nick);
+            void pollConnectionStateChanges();
+            void pollLocalUserInput();
+            bool localUserInputGetNext(std::string &result);
+    };
+    
+    template<class TServerData, class TClientData>
+    static Server<TServerData, TClientData> *serverCallbackInstance; //TODO: Find a cleaner solution than using a static instance
+    
+    template<class TServerData, class TClientData>
+    static void SteamServerNetConnectionStatusChangedCallback( SteamNetConnectionStatusChangedCallback_t *pInfo )
+    {
+        serverCallbackInstance<TServerData, TClientData>->onSteamNetConnectionStatusChanged( pInfo );
     }
     
-    // trim from start (in place)
-    static inline void ltrim(std::string &s) {
-        s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](int ch) {
-            return !std::isspace(ch);
-        }));
-    }
-
-    // trim from end (in place)
-    static inline void rtrim(std::string &s) {
-        s.erase(std::find_if(s.rbegin(), s.rend(), [](int ch) {
-            return !std::isspace(ch);
-        }).base(), s.end());
-    }
+    
     
     template<class TServerData, class TClientData>
     void Server<TServerData, TClientData>::run()
@@ -46,7 +97,7 @@ namespace ggj
         SteamNetworkingConfigValue_t opt;
         
         //TODO: set callback
-        opt.SetPtr( k_ESteamNetworkingConfig_Callback_ConnectionStatusChanged, (void*)SteamNetConnectionStatusChangedCallback );
+        opt.SetPtr( k_ESteamNetworkingConfig_Callback_ConnectionStatusChanged, (void*)SteamServerNetConnectionStatusChangedCallback<TServerData, TClientData> );
         m_listenSocket = m_netInterface->CreateListenSocketIP( serverLocalAddr, 1, &opt );
         
         if ( m_listenSocket == k_HSteamListenSocket_Invalid )
@@ -104,7 +155,7 @@ namespace ggj
         // a message and then either wait for the peer to close the connection, or
         // you can pool the connection to see if any reliable data is pending.
         std::this_thread::sleep_for( std::chrono::milliseconds( 500 ) );
-        
+
 #ifdef STEAMNETWORKINGSOCKETS_OPENSOURCE
         GameNetworkingSockets_Kill();
 #else
@@ -194,7 +245,7 @@ namespace ggj
     template<class TServerData, class TClientData>
     void Server<TServerData, TClientData>::pollConnectionStateChanges()
     {
-        callbackInstance<TServerData, TClientData> = this;
+        serverCallbackInstance<TServerData, TClientData> = this;
         m_netInterface->RunCallbacks();
     }
     
@@ -279,10 +330,10 @@ namespace ggj
                     // as the connection description, it will show up, along with their
                     // transport-specific data (e.g. their IP address)
                     m_logger.information(fmt::format("Connection {0} {1}, reason {2}: {3}\n",
-                            pInfo->m_info.m_szConnectionDescription,
-                            pszDebugLogAction,
-                            pInfo->m_info.m_eEndReason,
-                            pInfo->m_info.m_szEndDebug
+                                                     pInfo->m_info.m_szConnectionDescription,
+                                                     pszDebugLogAction,
+                                                     pInfo->m_info.m_eEndReason,
+                                                     pInfo->m_info.m_szEndDebug
                     ));
                     
                     m_mapClients.erase( itClient );
@@ -406,3 +457,5 @@ namespace ggj
     }
     
 } // ggj
+
+#endif //GALDER_GAME_JAM_2023_PROJECT_SERVER_HPP

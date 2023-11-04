@@ -37,7 +37,7 @@
 
 //Network
 #include "network/IpAddressResolver.h"
-#include "network/Client.h"
-#include "network/Server.h"
+#include "network/Client.hpp"
+#include "network/Server.hpp"
 
 #endif //GAME_DEV_TEMPLATE_GAMEDEVBASE_H

@@ -12,7 +12,6 @@ add_library(gamedev_base GameDevBase.h system/ConsoleLogger.cpp
         enums/ConnectionStatus.h
         data/ServerHostInfo.hpp
         data/IpAddress.hpp
-        network/Server.cpp
-        network/Server.h
-        network/Client.cpp
-        network/Client.h)
+        network/Server.hpp
+        network/Client.hpp
+        network/StringTrim.hpp)

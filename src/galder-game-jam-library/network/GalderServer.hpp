@@ -2,8 +2,8 @@
 // Created by robin on 04.11.23.
 //
 
-#ifndef GALDER_GAME_JAM_2023_PROJECT_GALDERSERVER_H
-#define GALDER_GAME_JAM_2023_PROJECT_GALDERSERVER_H
+#ifndef GALDER_GAME_JAM_2023_PROJECT_GALDERSERVER_HPP
+#define GALDER_GAME_JAM_2023_PROJECT_GALDERSERVER_HPP
 
 #include "../../gamedev-base/GameDevBase.h"
 #include "../data/PlayerNetworkData.hpp"
@@ -12,7 +12,7 @@
 namespace ggj
 {
     
-    class GalderServer : ggj::Server<ServerNetworkData, PlayerNetworkData>
+    class GalderServer : public ggj::Server<ServerNetworkData, PlayerNetworkData>
     {
         public:
             GalderServer(ILogger &logger, IIpAddressResolver &ipAddressResolver) :
@@ -24,4 +24,4 @@ namespace ggj
     
 } // ggj
 
-#endif //GALDER_GAME_JAM_2023_PROJECT_GALDERSERVER_H
+#endif //GALDER_GAME_JAM_2023_PROJECT_GALDERSERVER_HPP

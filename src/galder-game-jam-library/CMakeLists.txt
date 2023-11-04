@@ -15,7 +15,5 @@ add_library(galder-game-jam-library GalderGameJamLibrary.h managers/GameManager.
         game/enemies/Snake.cpp game/enemies/Snake.h game/collectibles/Coin.cpp game/collectibles/Coin.h
         data/PlayerNetworkData.hpp
         data/ServerNetworkData.hpp
-        network/GalderServer.cpp
-        network/GalderServer.h
-        network/GalderClient.cpp
-        network/GalderClient.h)
+        network/GalderServer.hpp
+        network/GalderClient.hpp)
