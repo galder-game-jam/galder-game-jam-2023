@@ -71,7 +71,7 @@ namespace ggj
                 m_strToTex["swoosh.png"] = TextureName::MeleeSwoosh;
                 m_strToTex["player-spritemap-greenpants.png"] = TextureName::PlayerSpritemapGreenpants;
                 m_strToTex["player-spritemap-greypants.png"] = TextureName::PlayerSpritemapGreypants;
-                m_strToTex["player-spritemap.png"] = TextureName::PlayerSpritemap;
+                m_strToTex["player-spritemap-bluepants.png"] = TextureName::PlayerSpritemapBluepants;
                 m_strToTex["player-spritemap-redpants.png"] = TextureName::PlayerSpritemapRedpants;
                 m_strToTex["powerups-rpg-icons.png"] = TextureName::PowerupsRpgIcons;
                 m_strToTex["fire.png"] = TextureName::ShootFire;
@@ -134,7 +134,7 @@ namespace ggj
                 m_texToRes[TextureName::MeleeSwoosh] = ResourceName::GraphicsMeleeSwoosh;
                 m_texToRes[TextureName::PlayerSpritemapGreenpants] = ResourceName::GraphicsPlayerSpritemapGreenpants;
                 m_texToRes[TextureName::PlayerSpritemapGreypants] = ResourceName::GraphicsPlayerSpritemapGreypants;
-                m_texToRes[TextureName::PlayerSpritemap] = ResourceName::GraphicsPlayerSpritemap;
+                m_texToRes[TextureName::PlayerSpritemapBluepants] = ResourceName::GraphicsPlayerSpritemapBluepants;
                 m_texToRes[TextureName::PlayerSpritemapRedpants] = ResourceName::GraphicsPlayerSpritemapRedpants;
                 m_texToRes[TextureName::PowerupsRpgIcons] = ResourceName::GraphicsPowerupsRpgIcons;
                 m_texToRes[TextureName::ShootFire] = ResourceName::GraphicsShootFire;
@@ -159,7 +159,7 @@ namespace ggj
                 switch (playerState)
                 {
                     case PlayerState::Idle:
-                        return AnimationName::PlayerIdle;
+                        return AnimationName::Player1Idle;
                     case PlayerState::Walk:
                         return AnimationName::PlayerWalk;
                     case PlayerState::Jump:

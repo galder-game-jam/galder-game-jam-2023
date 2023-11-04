@@ -208,6 +208,43 @@ namespace ggj
                                 {raylib::Vector2(32 * 16,32), 300},
                         }
                 };
+        m_animations[AnimationName::Player1Idle] =
+                {
+                        raylib::Vector2(46, 50),
+                        {
+                                {raylib::Vector2(46 * 0,50), 300},
+                        }
+                };
+        m_animations[AnimationName::Player1Walk] =
+                {
+                        raylib::Vector2(46, 50),
+                        {
+                                {raylib::Vector2(46 * 0,50 * 3), 300},
+                                {raylib::Vector2(46 * 1,50 * 3), 300},
+                                {raylib::Vector2(46 * 2,50 * 3), 300},
+                                {raylib::Vector2(46 * 3,50 * 3), 300},
+                                {raylib::Vector2(46 * 4,50 * 3), 300},
+                                {raylib::Vector2(46 * 5,50 * 3), 300},
+                                {raylib::Vector2(46 * 6,50 * 3), 300},
+                                {raylib::Vector2(46 * 7,50 * 3), 300},
+                        }
+                };
+        m_animations[AnimationName::Player1Jump] =
+                {
+                        raylib::Vector2(46, 50),
+                        {
+                                {raylib::Vector2(46 * 6,50), 300},
+                                {raylib::Vector2(46 * 7,50), 300},
+                        }
+                };
+
+        m_animations[AnimationName::Player1Fall] =
+                {
+                        raylib::Vector2(46, 50),
+                        {
+                                {raylib::Vector2(46,50 * 3), 300},
+                        }
+                };
         return true;
     }
 } // ggj

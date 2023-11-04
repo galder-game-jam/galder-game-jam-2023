@@ -24,7 +24,7 @@ namespace ggj
             : PhysicsSprite(body, physicsSize, spriteSize, drawingRect, texture, userData, isVisible), m_inputManager {inputManager}, m_animationManager {animationManager}, m_mapper{mapper}
             {
                 m_body->SetFixedRotation(true);
-                m_animation = m_animationManager.getAnimation(AnimationName::PlayerIdle);
+                m_animation = m_animationManager.getAnimation(AnimationName::Player1Idle);
                 m_startPos = ConvertToVector2(m_body->GetPosition());
             }
 
