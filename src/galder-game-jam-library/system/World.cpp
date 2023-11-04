@@ -226,6 +226,7 @@ namespace ggj
 
             m_debugManager.setText(1, fmt::format("PlayerPos: ({0}, {1})", (int) m_player->getPosition().x, (int) m_player->getPosition().y));
             m_debugManager.setText(2, fmt::format("CameraPos: ({0}, {1})", (int) m_camera.target.x, (int) m_camera.target.y));
+            m_debugManager.setText(3, fmt::format("Player1 score: {0}", (int) m_player->getScore()));
         }
 
         if (m_camera.target.x > m_cameraMax.x)
