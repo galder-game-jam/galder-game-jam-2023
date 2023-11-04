@@ -33,4 +33,9 @@ namespace ggj
 
         m_texture->Draw(m_drawingRect, raylib::Rectangle(m_position.x, m_position.y, m_drawingRect.width, m_drawingRect.height), m_origin, m_rotation, WHITE);
     }
+
+    void Sprite::destroy()
+    {
+
+    }
 } // dev

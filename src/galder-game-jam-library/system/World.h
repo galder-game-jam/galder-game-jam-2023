@@ -41,6 +41,7 @@ namespace ggj
             void update(float timeDelta) override;
             void draw() override;
 
+        private:
             //Generator logic
             void generatePhysicsObject(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
             void generatePlayer(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
@@ -52,8 +53,8 @@ namespace ggj
             void generateGhost(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
             void generatePortal(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
             void generateGenericPhysicsObject(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
+            void destroyMarkedObjects();
 
-        private:
             ggj::ILogger &m_logger;
             ggj::IResourceManager<ResourceName> &m_resources;
             IMapper &m_mapper;

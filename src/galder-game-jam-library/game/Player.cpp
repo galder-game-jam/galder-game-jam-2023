@@ -141,6 +141,15 @@ namespace ggj
         {
             m_hasClearedLevel = true;
         }
+        if(b->getUserData()->getCommand() == "pickup_coin")
+        {
+            ++m_score;
+        }
+    }
+
+    int Player::getScore()
+    {
+        return m_score;
     }
 
     bool Player::hasClearedLevel() const

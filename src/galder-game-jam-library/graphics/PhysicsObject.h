@@ -17,6 +17,13 @@ namespace ggj
     {
         public:
             PhysicsObject() = default;
+            ~PhysicsObject() override
+            {
+                if(m_body != nullptr)
+                {
+                    m_body->GetWorld()->DestroyBody(m_body);
+                }
+            }
             PhysicsObject(b2Body *body, const raylib::Vector2 &size, PhysicsShape shape, const UserData &userData, raylib::Color color = raylib::Color::Red(), bool isVisible = true)
             : m_body {body}, m_size {size}, m_shape {shape}, m_userData{userData}, m_origin {size.x / 2, size.y / 2}, m_color {color}
             {
@@ -25,7 +32,10 @@ namespace ggj
             void rotate(float degrees) override;
             void scale(float scale) override;
             void move(const raylib::Vector2 &toMove) override;
-
+            void destroy() override
+            {
+                ggj::IGameObject<raylib::Vector2>::destroy();
+            }
             void update(float timeDelta) override;
             void draw() override;
 

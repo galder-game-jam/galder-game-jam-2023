@@ -31,12 +31,9 @@ namespace ggj
             [[nodiscard]] const Vector2 &getVelocity() const;
             [[nodiscard]] bool cameraShouldFollowPlayer() const;
             bool hasClearedLevel() const;
-
             void setHasClearedLevel(bool hasClearedLevel);
-
-
             void beginContact(PhysicsObject *a, PhysicsObject *b, b2Contact *contact) override;
-
+            int getScore();
             void update(float timeDelta) override;
             void draw() override;
 
@@ -57,6 +54,7 @@ namespace ggj
             bool m_isDead {false};
             int m_maxJumps{2};
             int m_jumps{0};
+            int m_score{0};
     };
 
 } // dev

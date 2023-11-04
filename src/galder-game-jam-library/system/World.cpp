@@ -212,6 +212,7 @@ namespace ggj
         {
             layer.second.update(timeDelta);
         }
+
         if (m_player != nullptr)
         {
             if(m_player->hasClearedLevel())
@@ -226,6 +227,7 @@ namespace ggj
 
             m_debugManager.setText(1, fmt::format("PlayerPos: ({0}, {1})", (int) m_player->getPosition().x, (int) m_player->getPosition().y));
             m_debugManager.setText(2, fmt::format("CameraPos: ({0}, {1})", (int) m_camera.target.x, (int) m_camera.target.y));
+            m_debugManager.setText(3, fmt::format("Player1 score: {0}", (int) m_player->getScore()));
         }
 
         if (m_camera.target.x > m_cameraMax.x)
@@ -237,7 +239,7 @@ namespace ggj
         if (m_camera.target.y < m_cameraMin.y)
             m_camera.target.y = m_cameraMin.y;
 
-
+        destroyMarkedObjects();
     }
 
     void World::draw()
@@ -590,6 +592,14 @@ namespace ggj
                                                                                                               generatorData.velocity, m_portalTimer);
                 m_userDataManager.addUserData(body, physicsObject);
             }
+        }
+    }
+
+    void World::destroyMarkedObjects()
+    {
+        for (auto &layer: m_layers)
+        {
+            layer.second.destroyMarkedObjects();
         }
     }
 }
