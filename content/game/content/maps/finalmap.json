@@ -1772,6 +1772,55 @@
                  "width":16,
                  "x":352,
                  "y":192
+                }, 
+                {
+                 "ellipse":true,
+                 "height":32,
+                 "id":58,
+                 "name":"player2",
+                 "properties":[
+                        {
+                         "name":"is_player",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"is_static",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"player-spritemap-redpants.png"
+                        }, 
+                        {
+                         "name":"sprite_size_x",
+                         "type":"int",
+                         "value":46
+                        }, 
+                        {
+                         "name":"sprite_size_y",
+                         "type":"int",
+                         "value":50
+                        }, 
+                        {
+                         "name":"userdata_objecttype",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"userdata_objecttype_enum",
+                         "propertytype":"ObjectType",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"PhysicsObject",
+                 "visible":true,
+                 "width":24,
+                 "x":336,
+                 "y":16
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1806,7 +1855,7 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":58,
+ "nextobjectid":59,
  "orientation":"orthogonal",
  "properties":[
         {

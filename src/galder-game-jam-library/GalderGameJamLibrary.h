@@ -17,6 +17,7 @@
 
 //Game
 #include "game/Player.h"
+#include "game/Player2.h"
 
 //Enemies
 #include "game/enemies/Bat.h"

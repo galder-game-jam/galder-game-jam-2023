@@ -172,55 +172,6 @@
                  "y":1409.87777777778
                 }, 
                 {
-                 "ellipse":true,
-                 "height":32,
-                 "id":13,
-                 "name":"player1",
-                 "properties":[
-                        {
-                         "name":"is_player",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"is_static",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"sprite",
-                         "type":"string",
-                         "value":"player-spritemap-bluepants.png"
-                        }, 
-                        {
-                         "name":"sprite_size_x",
-                         "type":"int",
-                         "value":46
-                        }, 
-                        {
-                         "name":"sprite_size_y",
-                         "type":"int",
-                         "value":50
-                        }, 
-                        {
-                         "name":"userdata_objecttype",
-                         "type":"int",
-                         "value":1
-                        }, 
-                        {
-                         "name":"userdata_objecttype_enum",
-                         "propertytype":"ObjectType",
-                         "type":"int",
-                         "value":1
-                        }],
-                 "rotation":0,
-                 "type":"PhysicsObject",
-                 "visible":true,
-                 "width":24,
-                 "x":320,
-                 "y":464
-                }, 
-                {
                  "height":1456,
                  "id":27,
                  "name":"",
@@ -528,8 +479,8 @@
                  "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
-                 "x":592,
-                 "y":464
+                 "x":341.333333333333,
+                 "y":310.666666666667
                 }, 
                 {
                  "height":16,
@@ -1823,8 +1774,7 @@
                  "width":16,
                  "x":816,
                  "y":896
-                },
-            
+                }, 
                 {
                  "height":16,
                  "id":216,
@@ -1862,7 +1812,8 @@
                  "width":16,
                  "x":832,
                  "y":896
-                }, 
+                },
+            
                 {
                  "ellipse":true,
                  "height":16,
@@ -2251,6 +2202,104 @@
                  "width":16,
                  "x":544,
                  "y":192
+                }, 
+                {
+                 "ellipse":true,
+                 "height":32,
+                 "id":239,
+                 "name":"player2",
+                 "properties":[
+                        {
+                         "name":"is_player",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"is_static",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"player-spritemap-redpants.png"
+                        }, 
+                        {
+                         "name":"sprite_size_x",
+                         "type":"int",
+                         "value":46
+                        }, 
+                        {
+                         "name":"sprite_size_y",
+                         "type":"int",
+                         "value":50
+                        }, 
+                        {
+                         "name":"userdata_objecttype",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"userdata_objecttype_enum",
+                         "propertytype":"ObjectType",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"PhysicsObject",
+                 "visible":true,
+                 "width":24,
+                 "x":608,
+                 "y":448
+                }, 
+                {
+                 "ellipse":true,
+                 "height":32,
+                 "id":240,
+                 "name":"player1",
+                 "properties":[
+                        {
+                         "name":"is_player",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"is_static",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"player-spritemap-bluepants.png"
+                        }, 
+                        {
+                         "name":"sprite_size_x",
+                         "type":"int",
+                         "value":46
+                        }, 
+                        {
+                         "name":"sprite_size_y",
+                         "type":"int",
+                         "value":50
+                        }, 
+                        {
+                         "name":"userdata_objecttype",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"userdata_objecttype_enum",
+                         "propertytype":"ObjectType",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"PhysicsObject",
+                 "visible":true,
+                 "width":24,
+                 "x":320,
+                 "y":448
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2330,7 +2379,7 @@
          "y":0
         }],
  "nextlayerid":9,
- "nextobjectid":239,
+ "nextobjectid":241,
  "orientation":"orthogonal",
  "properties":[
         {

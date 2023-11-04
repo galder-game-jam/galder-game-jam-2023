@@ -213,21 +213,31 @@ namespace ggj
             layer.second.update(timeDelta);
         }
 
-        if (m_player != nullptr)
+        if (m_player != nullptr && m_player2 != nullptr)
         {
             if(m_player->hasClearedLevel())
             {
                 setLevelCleared(true);
                 m_player->setHasClearedLevel(false);
+                m_player2->setHasClearedLevel(false);
+            }
+
+            if(m_player2->hasClearedLevel())
+            {
+                setLevelCleared(true);
+                m_player->setHasClearedLevel(false);
+                m_player2->setHasClearedLevel(false);
             }
             m_camera.target = (m_player->cameraShouldFollowPlayer())
                               ? raylib::Vector2((float) (int) (std::round(m_player->getPosition().x) - (float) 400.f / 2),
                                                 (float) (int) (std::round(m_player->getPosition().y) - (float) 240.f / 2))
                               : m_cameraDefault;
 
-            m_debugManager.setText(1, fmt::format("PlayerPos: ({0}, {1})", (int) m_player->getPosition().x, (int) m_player->getPosition().y));
-            m_debugManager.setText(2, fmt::format("CameraPos: ({0}, {1})", (int) m_camera.target.x, (int) m_camera.target.y));
-            m_debugManager.setText(3, fmt::format("Player1 score: {0}", (int) m_player->getScore()));
+            m_debugManager.setText(1, fmt::format("Player1Pos: ({0}, {1})", (int) m_player->getPosition().x, (int) m_player->getPosition().y));
+            m_debugManager.setText(2, fmt::format("Player2Pos: ({0}, {1})", (int) m_player2->getPosition().x, (int) m_player2->getPosition().y));
+            m_debugManager.setText(3, fmt::format("CameraPos: ({0}, {1})", (int) m_camera.target.x, (int) m_camera.target.y));
+            m_debugManager.setText(4, fmt::format("Player1 score: {0}", (int) m_player->getScore()));
+            m_debugManager.setText(5, fmt::format("Player2 score: {0}", (int) m_player2->getScore()));
         }
 
         if (m_camera.target.x > m_cameraMax.x)
@@ -257,6 +267,8 @@ namespace ggj
     {
         if (name == "player1")
             generatePlayer(name, body, generatorData);
+        else if (name == "player2")
+            generatePlayer2(name, body, generatorData);
         else if (name == "bat")
             generateBat(name, body, generatorData);
         else if (name == "snake")
@@ -303,6 +315,38 @@ namespace ggj
                                                                                             spriteSize, r,
                                                                                             tex, generatorData.userData);
                 m_userDataManager.addUserData(body, m_player);
+            }
+        }
+    }
+
+    void World::generatePlayer2(const std::string &name, b2Body *body, const ObjectGeneratorData &generatorData)
+    {
+        TextureName id = m_mapper.getTextureNameByString(generatorData.sprite);
+        if (id != TextureName::None)
+        {
+            raylib::Texture *tex = m_textures.get(id);
+            if (tex != nullptr)
+            {
+                raylib::Rectangle rect = {0.f, 0.f, (float) generatorData.originalSize.x, (float) generatorData.originalSize.y};
+                raylib::Vector2 origin = {(float) rect.width / 2, (float) rect.height / 2};
+                raylib::Vector2 v = {(float) generatorData.pos.x + origin.x, (float) generatorData.pos.y + origin.y};
+
+                raylib::Rectangle r = {(float) rect.x, (float) rect.y, (float) rect.width, (float) rect.height};
+
+                if (generatorData.spriteSize.x != 0 && generatorData.spriteSize.y != 0)
+                {
+                    r.width = generatorData.spriteSize.x;
+                    r.height = generatorData.spriteSize.y;
+                }
+
+                raylib::Vector2 spriteSize = raylib::Vector2(r.width, r.height);
+
+                m_player2 = m_layers[generatorData.layerIndex].createGameObject<ggj::Player2>(m_input, m_animationManager, m_mapper, body,
+                                                                                            raylib::Vector2((float) generatorData.size.x,
+                                                                                                            (float) generatorData.size.y),
+                                                                                            spriteSize, r,
+                                                                                            tex, generatorData.userData);
+                m_userDataManager.addUserData(body, m_player2);
             }
         }
     }
