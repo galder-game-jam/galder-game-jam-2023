@@ -173,7 +173,7 @@
                 }, 
                 {
                  "ellipse":true,
-                 "height":16,
+                 "height":32,
                  "id":13,
                  "name":"player1",
                  "properties":[
@@ -190,17 +190,17 @@
                         {
                          "name":"sprite",
                          "type":"string",
-                         "value":"characters.png"
+                         "value":"player-spritemap-bluepants.png"
                         }, 
                         {
                          "name":"sprite_size_x",
                          "type":"int",
-                         "value":32
+                         "value":46
                         }, 
                         {
                          "name":"sprite_size_y",
                          "type":"int",
-                         "value":32
+                         "value":50
                         }, 
                         {
                          "name":"userdata_objecttype",
@@ -216,8 +216,8 @@
                  "rotation":0,
                  "type":"PhysicsObject",
                  "visible":true,
-                 "width":16,
-                 "x":336,
+                 "width":24,
+                 "x":320,
                  "y":464
                 }, 
                 {
