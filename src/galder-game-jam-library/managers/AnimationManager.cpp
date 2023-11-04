@@ -102,14 +102,14 @@ namespace ggj
                 {
                         raylib::Vector2(16, 16),
                         {
-                                {raylib::Vector2(16 * 0,16), 100},
-                                {raylib::Vector2(16 * 1,16), 100},
-                                {raylib::Vector2(16 * 2,16), 100},
-                                {raylib::Vector2(16 * 3,16), 100},
-                                {raylib::Vector2(16 * 4,16), 100},
-                                {raylib::Vector2(16 * 5,16), 100},
-                                {raylib::Vector2(16 * 6,16), 100},
-                                {raylib::Vector2(16 * 7,16), 100},
+                                {raylib::Vector2(16 * 0,16), 75},
+                                {raylib::Vector2(16 * 1,16), 75},
+                                {raylib::Vector2(16 * 2,16), 75},
+                                {raylib::Vector2(16 * 3,16), 75},
+                                {raylib::Vector2(16 * 4,16), 75},
+                                {raylib::Vector2(16 * 5,16), 75},
+                                {raylib::Vector2(16 * 6,16), 75},
+                                {raylib::Vector2(16 * 7,16), 75},
                         }
                 };
         return true;
