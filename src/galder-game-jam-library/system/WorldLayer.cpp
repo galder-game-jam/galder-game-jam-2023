@@ -38,4 +38,16 @@ namespace ggj
             obj->draw();
         }
     }
+
+    void WorldLayer::destroyMarkedObjects()
+    {
+        std::erase_if(m_gameObjects, [&](auto & item)
+        {
+            if(item->shouldBeDestroyed())
+            {
+                item->destroy();
+            }
+            return item->shouldBeDestroyed();
+        });
+    }
 } // dev

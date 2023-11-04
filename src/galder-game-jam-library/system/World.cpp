@@ -212,6 +212,7 @@ namespace ggj
         {
             layer.second.update(timeDelta);
         }
+
         if (m_player != nullptr)
         {
             if(m_player->hasClearedLevel())
@@ -238,7 +239,7 @@ namespace ggj
         if (m_camera.target.y < m_cameraMin.y)
             m_camera.target.y = m_cameraMin.y;
 
-
+        destroyMarkedObjects();
     }
 
     void World::draw()
@@ -591,6 +592,14 @@ namespace ggj
                                                                                                               generatorData.velocity, m_portalTimer);
                 m_userDataManager.addUserData(body, physicsObject);
             }
+        }
+    }
+
+    void World::destroyMarkedObjects()
+    {
+        for (auto &layer: m_layers)
+        {
+            layer.second.destroyMarkedObjects();
         }
     }
 }

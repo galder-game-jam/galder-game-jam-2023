@@ -12,7 +12,7 @@ namespace ggj
 
         if(userDataB->getObjectType() == ObjectType::Player)
         {
-            //TODO: Destroy coin object!
+            a->destroy();
         }
     }
 

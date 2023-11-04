@@ -25,7 +25,14 @@ namespace ggj
             void rotate(float degrees) override;
             void scale(float scale) override;
             void move(const raylib::Vector2 &toMove) override;
-
+            void destroy() override
+            {
+                ggj::IGameObject<raylib::Vector2>::destroy();
+                if(m_body != nullptr)
+                {
+                    //m_body->GetWorld()->DestroyBody(m_body);
+                }
+            }
             void update(float timeDelta) override;
             void draw() override;
 

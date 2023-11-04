@@ -7,6 +7,7 @@
 
 #include "raylib-cpp.hpp"
 #include "../../gamedev-base/GameDevBase.h"
+#include <functional>
 
 namespace ggj
 {
@@ -25,6 +26,7 @@ namespace ggj
 
             void update(float timeDelta);
             void draw();
+            void destroyMarkedObjects();
 
             [[nodiscard]] int32_t getLayer() const;
 
