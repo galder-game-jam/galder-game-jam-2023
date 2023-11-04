@@ -28,6 +28,9 @@
 // Collectibles
 #include "game/collectibles/Coin.h"
 
+//interactables
+#include "game/interactables/Portal.h"
+
 //Managers
 #include "managers/AnimationManager.h"
 #include "managers/CollisionManager.h"
