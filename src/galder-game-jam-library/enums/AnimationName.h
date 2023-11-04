@@ -20,6 +20,7 @@ namespace ggj
         EnemySnakeMove = 7,
         CoinSpin = 8,
         EnemySpiderWalk = 9,
+        EnemyThingWalk = 10,
     };
 
 } // ggj

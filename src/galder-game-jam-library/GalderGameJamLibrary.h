@@ -22,6 +22,7 @@
 #include "game/enemies/Bat.h"
 #include "game/enemies/Snake.h"
 #include "game/enemies/Spider.h"
+#include "game/enemies/Thing.h"
 
 // Collectibles
 #include "game/collectibles/Coin.h"

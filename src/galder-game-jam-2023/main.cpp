@@ -53,8 +53,8 @@ struct App
 
 int main(int argc, char **argv)
 {
-    int screenWidth = 400;
-    int screenHeight = 240;
+    int screenWidth = 480; // HalfWidth: 240
+    int screenHeight = 270; // HalfHeight: 135
     raylib::Window window {screenWidth, screenHeight, "Raylib Template"};
     window.SetState(FLAG_WINDOW_RESIZABLE);
 
