@@ -8,6 +8,7 @@
 #include <cstdint>
 #include <string>
 #include "../../data/ServerHostInfo.hpp"
+#include "steam/steamnetworkingtypes.h"
 
 namespace ggj
 {
@@ -21,8 +22,8 @@ namespace ggj
             virtual void stop() = 0;
             
         protected:
-            virtual bool send(const TServerData &data) = 0;
-            virtual bool receive(const TClientData &data) = 0;
+            virtual bool send(HSteamNetConnection connection, const TServerData &data) = 0;
+            virtual bool receive(HSteamNetConnection connection, const TClientData &data) = 0;
     };
 }
 

@@ -41,8 +41,8 @@ namespace ggj
             void onSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t *pInfo);
             
         protected:
-            bool send(const TServerData &data) override;
-            bool receive(const TClientData &data) override;
+            bool send(HSteamNetConnection connection, const TServerData &data) override;
+            bool receive(HSteamNetConnection connection, const TClientData &data) override;
         
         private:
             ILogger &m_logger;
@@ -446,12 +446,13 @@ namespace ggj
     }
     
     template<class TServerData, class TClientData>
-    bool Server<TServerData, TClientData>::send(const TServerData &data)
+    bool Server<TServerData, TClientData>::send(HSteamNetConnection connection, const TServerData &data)
     {
-        return false;
+        EResult result = m_netInterface->SendMessageToConnection(connection, data, sizeof(data), k_nSteamNetworkingSend_Reliable, nullptr );
+        return result == k_EResultOK;
     }
     template<class TServerData, class TClientData>
-    bool Server<TServerData, TClientData>::receive(const TClientData &data)
+    bool Server<TServerData, TClientData>::receive(HSteamNetConnection connection, const TClientData &data)
     {
         return false;
     }
