@@ -102,14 +102,47 @@ namespace ggj
                 {
                         raylib::Vector2(16, 16),
                         {
-                                {raylib::Vector2(16 * 0,16), 100},
-                                {raylib::Vector2(16 * 1,16), 100},
-                                {raylib::Vector2(16 * 2,16), 100},
-                                {raylib::Vector2(16 * 3,16), 100},
-                                {raylib::Vector2(16 * 4,16), 100},
-                                {raylib::Vector2(16 * 5,16), 100},
-                                {raylib::Vector2(16 * 6,16), 100},
-                                {raylib::Vector2(16 * 7,16), 100},
+                                {raylib::Vector2(16 * 0,16), 75},
+                                {raylib::Vector2(16 * 1,16), 75},
+                                {raylib::Vector2(16 * 2,16), 75},
+                                {raylib::Vector2(16 * 3,16), 75},
+                                {raylib::Vector2(16 * 4,16), 75},
+                                {raylib::Vector2(16 * 5,16), 75},
+                                {raylib::Vector2(16 * 6,16), 75},
+                                {raylib::Vector2(16 * 7,16), 75},
+                        }
+                };
+
+        m_animations[AnimationName::EnemySpiderWalk] =
+                {
+                        raylib::Vector2(32, 21),
+                        {
+                                {raylib::Vector2(32 * 0,21), 70},
+                                {raylib::Vector2(32 * 1,21), 70},
+                                {raylib::Vector2(32 * 2,21), 70},
+                                {raylib::Vector2(32 * 3,21), 70},
+                        }
+                };
+
+        m_animations[AnimationName::EnemyThingWalk] =
+                {
+                        raylib::Vector2(33, 45),
+                        {
+                                {raylib::Vector2(33 * 0,45), 200},
+                                {raylib::Vector2(33 * 1,45), 200},
+                                {raylib::Vector2(33 * 2,45), 200},
+                                {raylib::Vector2(33 * 3,45), 200},
+                        }
+                };
+
+        m_animations[AnimationName::EnemyGhostFly] =
+                {
+                        raylib::Vector2(31, 44),
+                        {
+                                {raylib::Vector2(31 * 0,44), 100},
+                                {raylib::Vector2(31 * 1,44), 100},
+                                {raylib::Vector2(31 * 2,44), 100},
+                                {raylib::Vector2(31 * 3,44), 100},
                         }
                 };
         return true;

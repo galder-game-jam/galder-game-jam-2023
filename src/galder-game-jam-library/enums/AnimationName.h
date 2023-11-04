@@ -19,6 +19,9 @@ namespace ggj
         EnemyBatDead = 6,
         EnemySnakeMove = 7,
         CoinSpin = 8,
+        EnemySpiderWalk = 9,
+        EnemyThingWalk = 10,
+        EnemyGhostFly = 11,
     };
 
 } // ggj
