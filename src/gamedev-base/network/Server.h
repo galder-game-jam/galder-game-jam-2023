@@ -9,6 +9,7 @@
 #include "../interfaces/network/IServer.h"
 #include "../interfaces/network/IIpAddressResolver.h"
 #include "../data/ClientInfo.hpp"
+#include "fmt/format.h"
 
 #include <steam/steamnetworkingsockets.h>
 #include <steam/isteamnetworkingutils.h>
@@ -32,7 +33,7 @@ namespace ggj
             {
             
             }
-            void initialize(uint16_t port, const std::string &name) override;
+            bool initialize(uint16_t port, const std::string &name) override;
             void run() override;
             void stop() override;
             
@@ -48,9 +49,9 @@ namespace ggj
             HSteamNetPollGroup m_pollGroup;
             ISteamNetworkingSockets *m_netInterface;
             std::map<HSteamNetConnection, ClientInfo> m_mapClients;
-            std::mutex mutexUserInputQueue;
-            std::queue< std::string > queueUserInput;
-            std::thread *s_pThreadUserInput = nullptr;
+            std::mutex m_mutexUserInputQueue;
+            std::queue< std::string > m_queueUserInput;
+            std::thread *m_threadUserInput = nullptr;
             
             bool m_quit = false;
             

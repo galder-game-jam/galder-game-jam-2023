@@ -15,7 +15,7 @@ namespace ggj
     {
         public:
             virtual ~IServer() noexcept = default;
-            virtual void initialize(uint16_t port, const std::string& name ) = 0;
+            virtual bool initialize(uint16_t port, const std::string& name ) = 0;
             virtual void run() = 0;
             virtual void stop() = 0;
     };

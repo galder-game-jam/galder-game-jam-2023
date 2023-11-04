@@ -3,7 +3,6 @@
 //
 
 #include "Server.h"
-#include "fmt/format.h"
 
 namespace ggj
 {
@@ -93,6 +92,19 @@ namespace ggj
     void Server::stop()
     {
         m_quit = true;
+        
+        // Give connections time to finish up.  This is an application layer protocol
+        // here, it's not TCP.  Note that if you have an application and you need to be
+        // more sure about cleanup, you won't be able to do this.  You will need to send
+        // a message and then either wait for the peer to close the connection, or
+        // you can pool the connection to see if any reliable data is pending.
+        std::this_thread::sleep_for( std::chrono::milliseconds( 500 ) );
+        
+#ifdef STEAMNETWORKINGSOCKETS_OPENSOURCE
+        GameNetworkingSockets_Kill();
+#else
+        SteamDatagramClient_Kill();
+#endif
     }
     
     void Server::pollIncomingMessages()
@@ -196,16 +208,16 @@ namespace ggj
     bool Server::localUserInputGetNext(std::string &result)
     {
         bool got_input = false;
-        mutexUserInputQueue.lock();
-        while ( !queueUserInput.empty() && !got_input )
+        m_mutexUserInputQueue.lock();
+        while (!m_queueUserInput.empty() && !got_input )
         {
-            result = queueUserInput.front();
-            queueUserInput.pop();
+            result = m_queueUserInput.front();
+            m_queueUserInput.pop();
             ltrim(result);
             rtrim(result);
             got_input = !result.empty(); // ignore blank lines
         }
-        mutexUserInputQueue.unlock();
+        m_mutexUserInputQueue.unlock();
         return got_input;
     }
     
@@ -285,7 +297,7 @@ namespace ggj
                 // This must be a new connection
                 //assert( m_mapClients.find( pInfo->m_hConn ) == m_mapClients.end() );
                 
-                m_logger.information(fmt::format("Connection request from %s", pInfo->m_info.m_szConnectionDescription));
+                m_logger.information(fmt::format("Connection request from {0}", pInfo->m_info.m_szConnectionDescription));
                 
                 // A client is attempting to connect
                 // Try to accept the connection.
@@ -314,7 +326,7 @@ namespace ggj
                 // but not logged on) until them.  I'm trying to keep this example
                 // code really simple.
                 char nick[ 64 ];
-                sprintf( nick, "BraveWarrior%d", 10000 + ( rand() % 100000 ) );
+                sprintf( nick, "GalderLover%d", 10000 + ( rand() % 100000 ) );
                 
                 // Send them a welcome message
                 sprintf( temp, "Welcome, stranger.  Thou art known to us for now as '%s'; upon thine command '/nick' we shall know thee otherwise.", nick );
@@ -352,7 +364,7 @@ namespace ggj
                 break;
         }
     }
-    void Server::initialize(uint16_t port, const std::string &name)
+    bool Server::initialize(uint16_t port, const std::string &name)
     {
         std::string localIp = m_resolver.getLocalIpAddress();
         std::string publicIp = m_resolver.getPublicIpAddress();
@@ -360,8 +372,11 @@ namespace ggj
         
         SteamDatagramErrMsg errMsg;
         if (!GameNetworkingSockets_Init( nullptr, errMsg ))
-            m_logger.error(fmt::format("GameNetworkingSockets_Init failed.  %s", errMsg));
-        
+        {
+            m_logger.critical(fmt::format("GameNetworkingSockets_Init failed.  {0}", errMsg));
+            return false;
+        }
+        return true;
     }
     
 } // ggj

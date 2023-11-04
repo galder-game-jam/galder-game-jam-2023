@@ -14,7 +14,8 @@ namespace ggj
     {
         public:
             virtual ~IClient() noexcept = default;
-            [[nodiscard]] virtual ConnectionStatus connect(uint16_t port) const = 0;
+            virtual bool initialize() = 0;
+            virtual void connect(uint16_t port, std::string ipAddress) = 0;
             [[nodiscard]] virtual ServerHostInfo getServerInfo() const = 0;
             virtual void ping() const = 0;
             virtual void disconnect() const = 0;

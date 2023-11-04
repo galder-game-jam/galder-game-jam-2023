@@ -45,10 +45,8 @@ int testNetworking()
     if(!app.initialize())
         app.logger.critical("App initialization failed!");
     
-    std::string localIp = fmt::format("Local IP: {0}", app.ipResolver.getLocalIpAddress());
-    std::string publicIp = fmt::format("Public IP: {0}", app.ipResolver.getPublicIpAddress());
-    logger.information(localIp);
-    logger.information(publicIp);
+    app.client.initialize();
+    app.client.connect(13337, "127.0.0.1");
     
     return 0;
 }
