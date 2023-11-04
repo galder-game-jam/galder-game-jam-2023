@@ -78,6 +78,7 @@ namespace ggj
                 m_strToTex["jungle_terrain.png"] = TextureName::TilesJungleTerrain;
                 m_strToTex["objects.png"] = TextureName::TilesObjects;
                 m_strToTex["coin.png"] = TextureName::Coin;
+                m_strToTex["portal.png"] = TextureName::Portal;
 
                 m_texToRes[TextureName::Player] = ResourceName::GraphicsPlayer;
                 m_texToRes[TextureName::MagicCliffsTileset] = ResourceName::GraphicsMagicCliffsTileset;
@@ -140,6 +141,7 @@ namespace ggj
                 m_texToRes[TextureName::TilesJungleTerrain] = ResourceName::GraphicsTilesJungleTerrain;
                 m_texToRes[TextureName::TilesObjects] = ResourceName::GraphicsTilesObjects;
                 m_texToRes[TextureName::Coin] = ResourceName::GraphicsCoin;
+                m_texToRes[TextureName::Portal] = ResourceName::GraphicsPortal;
             };
 
             TextureName getTextureNameByString(const std::string &id) override

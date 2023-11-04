@@ -50,6 +50,7 @@ namespace ggj
             void generateSpider(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
             void generateThing(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
             void generateGhost(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
+            void generatePortal(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
             void generateGenericPhysicsObject(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
 
         private:
@@ -68,6 +69,8 @@ namespace ggj
             raylib::Vector2 m_cameraMin {0.f, 0.f};
             raylib::Vector2 m_cameraMax {0.f, 0.f};
             raylib::Vector2 m_cameraDefault {0.f, 0.f};
+
+            int m_portalTimer{5};
 
             Player *m_player = nullptr;
 

@@ -71,6 +71,7 @@ namespace ggj
         TilesJungleTerrain = 175,
         TilesObjects = 176,
         Coin = 177,
+        Portal = 178,
     };
 }
 #endif //GAME_DEV_TEMPLATE_TEXTURENAME_H

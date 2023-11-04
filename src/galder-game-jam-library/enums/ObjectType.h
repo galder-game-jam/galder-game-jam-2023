@@ -16,6 +16,7 @@ namespace ggj
         Trap = 3,
         PowerUp = 4,
         Coin = 5,
+        Portal = 6,
     };
 
 } // ggj
