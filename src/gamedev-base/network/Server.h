@@ -25,8 +25,8 @@
 
 namespace ggj
 {
-    
-    class Server : public IServer
+    template <class TServerData, class TClientData>
+    class Server : public IServer<TServerData, TClientData>
     {
         public:
             Server(ILogger &logger, IIpAddressResolver &ipAddressResolver) : m_logger {logger}, m_resolver {ipAddressResolver}
@@ -39,15 +39,19 @@ namespace ggj
             
             void onSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t *pInfo);
             
+        protected:
+            bool send(const TServerData &data) override;
+            bool receive(const TClientData &data) override;
+        
         private:
             ILogger &m_logger;
             IIpAddressResolver &m_resolver;
             ServerHostInfo m_info{};
             
             //Steam networking stuff
-            HSteamListenSocket m_listenSocket;
-            HSteamNetPollGroup m_pollGroup;
-            ISteamNetworkingSockets *m_netInterface;
+            HSteamListenSocket m_listenSocket{};
+            HSteamNetPollGroup m_pollGroup{};
+            ISteamNetworkingSockets *m_netInterface {nullptr};
             std::map<HSteamNetConnection, ClientInfo> m_mapClients;
             std::mutex m_mutexUserInputQueue;
             std::queue< std::string > m_queueUserInput;

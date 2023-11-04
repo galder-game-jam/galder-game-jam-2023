@@ -6,10 +6,13 @@
 
 namespace ggj
 {
-    static Client *callbackInstance;
+    template<class TClientData, class TServerData>
+    static Client<TClientData, TServerData> *callbackInstance;
+    
+    template<class TClientData, class TServerData>
     static void SteamNetConnectionStatusChangedCallback( SteamNetConnectionStatusChangedCallback_t *pInfo )
     {
-        callbackInstance->onSteamNetConnectionStatusChanged(pInfo);
+        callbackInstance<TClientData, TServerData>->onSteamNetConnectionStatusChanged(pInfo);
     }
     
     // trim from start (in place)
@@ -26,7 +29,8 @@ namespace ggj
         }).base(), s.end());
     }
     
-    void Client::connect(uint16_t port, std::string ipAddress)
+    template<class TClientData, class TServerData>
+    void Client<TClientData, TServerData>::connect(uint16_t port, std::string ipAddress)
     {
         // Select instance to use.  For now we'll always use the default.
         m_netInterface = SteamNetworkingSockets();
@@ -54,22 +58,26 @@ namespace ggj
         }
     }
     
-    ServerHostInfo Client::getServerInfo() const
+    template<class TClientData, class TServerData>
+    ServerHostInfo Client<TClientData, TServerData>::getServerInfo() const
     {
         return {};
     }
     
-    void Client::ping() const
+    template<class TClientData, class TServerData>
+    void Client<TClientData, TServerData>::ping() const
     {
     
     }
     
-    void Client::disconnect() const
+    template<class TClientData, class TServerData>
+    void Client<TClientData, TServerData>::disconnect() const
     {
     
     }
     
-    void Client::onSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t *pInfo)
+    template<class TClientData, class TServerData>
+    void Client<TClientData, TServerData>::onSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t *pInfo)
     {
         //assert( pInfo->m_hConn == m_connection || m_connection == k_HSteamNetConnection_Invalid );
         
@@ -128,7 +136,8 @@ namespace ggj
         }
     }
     
-    void Client::pollIncomingMessages()
+    template<class TClientData, class TServerData>
+    void Client<TClientData, TServerData>::pollIncomingMessages()
     {
         while (!m_quit)
         {
@@ -148,13 +157,15 @@ namespace ggj
         }
     }
     
-    void Client::pollConnectionStateChanges()
+    template<class TClientData, class TServerData>
+    void Client<TClientData, TServerData>::pollConnectionStateChanges()
     {
-        callbackInstance = this;
+        callbackInstance<TClientData, TServerData> = this;
         m_netInterface->RunCallbacks();
     }
     
-    void Client::pollLocalUserInput()
+    template<class TClientData, class TServerData>
+    void Client<TClientData, TServerData>::pollLocalUserInput()
     {
         std::string cmd;
         while ( !m_quit && localUserInputGetNext( cmd ))
@@ -180,7 +191,8 @@ namespace ggj
         }
     }
     
-    bool Client::localUserInputGetNext(std::string &result)
+    template<class TClientData, class TServerData>
+    bool Client<TClientData, TServerData>::localUserInputGetNext(std::string &result)
     {
         bool got_input = false;
         m_mutexUserInputQueue.lock();
@@ -196,7 +208,8 @@ namespace ggj
         return got_input;
     }
     
-    bool Client::initialize()
+    template<class TClientData, class TServerData>
+    bool Client<TClientData, TServerData>::initialize()
     {
         SteamDatagramErrMsg errMsg;
         if (!GameNetworkingSockets_Init( nullptr, errMsg ))
@@ -205,5 +218,16 @@ namespace ggj
             return false;
         }
         return true;
+    }
+    
+    template<class TClientData, class TServerData>
+    bool Client<TClientData, TServerData>::send(const TClientData &data)
+    {
+        return false;
+    }
+    template<class TClientData, class TServerData>
+    bool Client<TClientData, TServerData>::receive(const TServerData &data)
+    {
+        return false;
     }
 } // ggj

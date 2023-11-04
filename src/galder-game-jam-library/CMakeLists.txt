@@ -12,4 +12,10 @@ add_library(galder-game-jam-library GalderGameJamLibrary.h managers/GameManager.
         graphics/Animation.h graphics/Frame.hpp enums/AnimationName.h enums/PlayerState.h
         system/UserData.hpp enums/ObjectType.h interfaces/manager/IUserDataManager.h managers/UserDataManager.hpp
         game/enemies/Bat.cpp game/enemies/Bat.h system/ObjectGeneratorData.hpp
-        game/enemies/Snake.cpp game/enemies/Snake.h game/collectibles/Coin.cpp game/collectibles/Coin.h)
+        game/enemies/Snake.cpp game/enemies/Snake.h game/collectibles/Coin.cpp game/collectibles/Coin.h
+        data/PlayerNetworkData.hpp
+        data/ServerNetworkData.hpp
+        network/GalderServer.cpp
+        network/GalderServer.h
+        network/GalderClient.cpp
+        network/GalderClient.h)

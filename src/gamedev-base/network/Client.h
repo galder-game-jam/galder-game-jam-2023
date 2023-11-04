@@ -24,8 +24,8 @@
 
 namespace ggj
 {
-    
-    class Client : public IClient
+    template <class TClientData, class TServerData>
+    class Client : public IClient<TClientData, TServerData>
     {
         public:
             Client(ILogger &logger, IIpAddressResolver &ipAddressResolver) : m_logger {logger}, m_resolver {ipAddressResolver}
@@ -40,6 +40,10 @@ namespace ggj
             
             void onSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t *pInfo);
             
+        protected:
+            bool send(const TClientData &data) override;
+            bool receive(const TServerData &data) override;
+        
         private:
             ILogger &m_logger;
             IIpAddressResolver &m_resolver;

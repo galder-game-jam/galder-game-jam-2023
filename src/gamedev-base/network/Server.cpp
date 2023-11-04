@@ -6,10 +6,13 @@
 
 namespace ggj
 {
-    static Server *callbackInstance; //TODO: Find a cleaner solution than using a static instance
+    template<class TServerData, class TClientData>
+    static Server<TServerData, TClientData> *callbackInstance; //TODO: Find a cleaner solution than using a static instance
+    
+    template<class TServerData, class TClientData>
     static void SteamNetConnectionStatusChangedCallback( SteamNetConnectionStatusChangedCallback_t *pInfo )
     {
-        callbackInstance->onSteamNetConnectionStatusChanged( pInfo );
+        callbackInstance<TServerData, TClientData>->onSteamNetConnectionStatusChanged( pInfo );
     }
     
     // trim from start (in place)
@@ -26,7 +29,8 @@ namespace ggj
         }).base(), s.end());
     }
     
-    void Server::run()
+    template<class TServerData, class TClientData>
+    void Server<TServerData, TClientData>::run()
     {
         // Select instance to use.  For now we'll always use the default.
         // But we could use SteamGameServerNetworkingSockets() on Steam.
@@ -89,7 +93,8 @@ namespace ggj
         m_pollGroup = k_HSteamNetPollGroup_Invalid;
     }
     
-    void Server::stop()
+    template<class TServerData, class TClientData>
+    void Server<TServerData, TClientData>::stop()
     {
         m_quit = true;
         
@@ -107,7 +112,8 @@ namespace ggj
 #endif
     }
     
-    void Server::pollIncomingMessages()
+    template<class TServerData, class TClientData>
+    void Server<TServerData, TClientData>::pollIncomingMessages()
     {
         char temp[ 1024 ];
         
@@ -159,12 +165,14 @@ namespace ggj
         }
     }
     
-    void Server::sendStringToClient(HSteamNetConnection conn, const char *str)
+    template<class TServerData, class TClientData>
+    void Server<TServerData, TClientData>::sendStringToClient(HSteamNetConnection conn, const char *str)
     {
         m_netInterface->SendMessageToConnection( conn, str, (uint32)strlen(str), k_nSteamNetworkingSend_Reliable, nullptr );
     }
     
-    void Server::sendStringToAllClients(const char *str, HSteamNetConnection except)
+    template<class TServerData, class TClientData>
+    void Server<TServerData, TClientData>::sendStringToAllClients(const char *str, HSteamNetConnection except)
     {
         for ( auto &c: m_mapClients )
         {
@@ -173,7 +181,8 @@ namespace ggj
         }
     }
     
-    void Server::setClientNick(HSteamNetConnection conn, const std::string &nick)
+    template<class TServerData, class TClientData>
+    void Server<TServerData, TClientData>::setClientNick(HSteamNetConnection conn, const std::string &nick)
     {
         // Remember their nick
         m_mapClients[conn].nick = nick;
@@ -182,13 +191,15 @@ namespace ggj
         m_netInterface->SetConnectionName( conn, nick.c_str() );
     }
     
-    void Server::pollConnectionStateChanges()
+    template<class TServerData, class TClientData>
+    void Server<TServerData, TClientData>::pollConnectionStateChanges()
     {
-        callbackInstance = this;
+        callbackInstance<TServerData, TClientData> = this;
         m_netInterface->RunCallbacks();
     }
     
-    void Server::pollLocalUserInput()
+    template<class TServerData, class TClientData>
+    void Server<TServerData, TClientData>::pollLocalUserInput()
     {
         std::string cmd;
         while (!m_quit && localUserInputGetNext(cmd))
@@ -205,7 +216,8 @@ namespace ggj
         }
     }
     
-    bool Server::localUserInputGetNext(std::string &result)
+    template<class TServerData, class TClientData>
+    bool Server<TServerData, TClientData>::localUserInputGetNext(std::string &result)
     {
         bool got_input = false;
         m_mutexUserInputQueue.lock();
@@ -221,7 +233,8 @@ namespace ggj
         return got_input;
     }
     
-    void Server::onSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t *pInfo)
+    template<class TServerData, class TClientData>
+    void Server<TServerData, TClientData>::onSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t *pInfo)
     {
         char temp[1024];
         
@@ -364,7 +377,9 @@ namespace ggj
                 break;
         }
     }
-    bool Server::initialize(uint16_t port, const std::string &name)
+    
+    template<class TServerData, class TClientData>
+    bool Server<TServerData, TClientData>::initialize(uint16_t port, const std::string &name)
     {
         std::string localIp = m_resolver.getLocalIpAddress();
         std::string publicIp = m_resolver.getPublicIpAddress();
@@ -377,6 +392,17 @@ namespace ggj
             return false;
         }
         return true;
+    }
+    
+    template<class TServerData, class TClientData>
+    bool Server<TServerData, TClientData>::send(const TServerData &data)
+    {
+        return false;
+    }
+    template<class TServerData, class TClientData>
+    bool Server<TServerData, TClientData>::receive(const TClientData &data)
+    {
+        return false;
     }
     
 } // ggj

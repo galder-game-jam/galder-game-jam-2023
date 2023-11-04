@@ -10,6 +10,7 @@
 #include <cstdint>
 namespace ggj
 {
+    template <class TClientData, class TServerData>
     class IClient
     {
         public:
@@ -19,6 +20,10 @@ namespace ggj
             [[nodiscard]] virtual ServerHostInfo getServerInfo() const = 0;
             virtual void ping() const = 0;
             virtual void disconnect() const = 0;
+        
+        protected:
+            virtual bool send(const TClientData &data) = 0;
+            virtual bool receive(const TServerData &data) = 0;
     };
 }
 
