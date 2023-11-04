@@ -43,10 +43,6 @@ namespace ggj
     {
         std::erase_if(m_gameObjects, [&](auto & item)
         {
-            if(item->shouldBeDestroyed())
-            {
-                item->destroy();
-            }
             return item->shouldBeDestroyed();
         });
     }
