@@ -7,7 +7,7 @@ add_library(galder-game-jam-library GalderGameJamLibrary.h managers/GameManager.
         system/WorldLayer.cpp system/WorldLayer.h graphics/Sprite.cpp graphics/Sprite.h graphics/PhysicsObject.cpp
         graphics/PhysicsObject.h enums/PhysicsShape.h graphics/PhysicsSprite.cpp graphics/PhysicsSprite.h
         managers/CollisionManager.cpp managers/CollisionManager.h managers/DummyDebugManager.hpp
-        managers/DebugManager.cpp managers/DebugManager.h game/Player.cpp game/Player.h
+        managers/DebugManager.cpp managers/DebugManager.h game/Player.cpp game/Player.h game/Player2.cpp game/Player2.h
         managers/AnimationManager.cpp managers/AnimationManager.h graphics/Animation.cpp
         graphics/Animation.h graphics/Frame.hpp enums/AnimationName.h enums/PlayerState.h
         system/UserData.hpp enums/ObjectType.h interfaces/manager/IUserDataManager.h managers/UserDataManager.hpp
