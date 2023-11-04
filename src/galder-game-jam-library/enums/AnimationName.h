@@ -25,6 +25,8 @@ namespace ggj
         PortalIdle = 12,
         PortalActive = 13,
         PortalTeleport = 14,
+        PortalClosing = 15,
+        PortalClosed = 16,
     };
 
 } // ggj

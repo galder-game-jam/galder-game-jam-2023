@@ -146,7 +146,7 @@ namespace ggj
                         }
                 };
 
-        m_animations[AnimationName::PortalTeleport] =
+        m_animations[AnimationName::PortalActive] =
                 {
                         raylib::Vector2(32, 32),
                         {
@@ -170,7 +170,7 @@ namespace ggj
                         }
                 };
 
-        m_animations[AnimationName::PortalActive] =
+        m_animations[AnimationName::PortalTeleport] =
                 {
                         raylib::Vector2(32, 32),
                         {
@@ -190,6 +190,22 @@ namespace ggj
                                 {raylib::Vector2(32 * 0,32), 300},
                                 {raylib::Vector2(32 * 1,32), 300},
                                 {raylib::Vector2(32 * 0,32), 300},
+                        }
+                };
+        m_animations[AnimationName::PortalClosing] =
+                {
+                        raylib::Vector2(32, 32),
+                        {
+                                {raylib::Vector2(32 * 1,32), 300},
+                                {raylib::Vector2(32 * 0,32), 300},
+                                {raylib::Vector2(32 * 16,32), 10000},
+                        }
+                };
+        m_animations[AnimationName::PortalClosed] =
+                {
+                        raylib::Vector2(32, 32),
+                        {
+                                {raylib::Vector2(32 * 16,32), 300},
                         }
                 };
         return true;

@@ -6,7 +6,11 @@ namespace ggj
     {
         if(b->getUserData()->getObjectType() == ObjectType::Player)
         {
-            teleport();
+            if (!m_hasTeleported)
+            {
+                m_hasTeleported = true;
+                teleport();
+            }
         }
     }
 
@@ -14,6 +18,21 @@ namespace ggj
     {
         if(m_body == nullptr)
             return;
+
+        if(m_activationTimer < m_activationTimeInSeconds)
+        {
+            m_activationTimer += timeDelta;
+            if(m_activationTimer > m_activationTimeInSeconds)
+                activate();
+        }
+        else if(m_hasTeleported && m_teleportTime > 0)
+        {
+            m_teleportTime -= timeDelta;
+            if(m_teleportTime < 0)
+            {
+                close();
+            }
+        }
 
         m_body->SetLinearVelocity({m_velocity.x, m_velocity.y});
 
@@ -26,8 +45,17 @@ namespace ggj
         }
     }
 
+    void Portal::activate()
+    {
+        m_animation = m_animationManager.getAnimation(AnimationName::PortalActive);
+    }
+
     void Portal::teleport()
     {
-        //TODO: Implement teleport
+        m_animation = m_animationManager.getAnimation(AnimationName::PortalTeleport);
+    }
+    void Portal::close()
+    {
+        m_animation = m_animationManager.getAnimation(AnimationName::PortalIdle);
     }
 } // ggj

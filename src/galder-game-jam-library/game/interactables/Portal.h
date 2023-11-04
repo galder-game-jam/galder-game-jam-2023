@@ -27,7 +27,18 @@ namespace ggj
             void beginContact(PhysicsObject *a, PhysicsObject *b, b2Contact *contact) override;
 
         private:
+            // Activation
+            float m_activationTimer{0.f};
+            float m_activationTimeInSeconds{5.f};
+
+            //After use
+            bool m_hasTeleported = false;
+            float m_teleportTime {3.f};
+
+            void activate();
             void teleport();
+            void close();
+
             ggj::IAnimationManager<ggj::Animation, ggj::AnimationName> &m_animationManager;
             IMapper &m_mapper;
             Animation m_animation;
