@@ -67,3 +67,4 @@ The following graphics from [OpenGameArt](https://opengameart.org) are used in t
 | Hero spritesheets (Ars Notoria) | Balmer          | CC0           | https://opengameart.org/content/hero-spritesheets-ars-notoria        |
 | Portraits Generators            | aamatniekss     | ?             | https://itch.io/queue/c/1866028/portraits-generators?game_id=105631  |
 | Rotating Coin                   | Puddin          | CC0           | https://opengameart.org/content/rotating-coin                        |
+| Portals                         | LetargicDev     | CC0           | https://opengameart.org/content/portals                              |
