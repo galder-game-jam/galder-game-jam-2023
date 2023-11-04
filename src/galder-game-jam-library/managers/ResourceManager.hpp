@@ -87,10 +87,10 @@ namespace ggj
         add(ggj::ResourceName::GraphicsExplosion6, "graphics/explosions/explosion-6.png");
         add(ggj::ResourceName::GraphicsHudUiBigPieces, "graphics/hud/ui_big_pieces.png");
         add(ggj::ResourceName::GraphicsMeleeSwoosh, "graphics/melee/swoosh.png");
-        add(ggj::ResourceName::GraphicsPlayerSpritemapGreenpants, "graphics/player/player-spritemap-v9-greenpants.png");
-        add(ggj::ResourceName::GraphicsPlayerSpritemapGreypants, "graphics/player/player-spritemap-v9-greypants.png");
-        add(ggj::ResourceName::GraphicsPlayerSpritemap, "graphics/player/player-spritemap-v9.png");
-        add(ggj::ResourceName::GraphicsPlayerSpritemapRedpants, "graphics/player/player-spritemap-v9-redpants.png");
+        add(ggj::ResourceName::GraphicsPlayerSpritemapGreenpants, "graphics/player/player-spritemap-greenpants.png");
+        add(ggj::ResourceName::GraphicsPlayerSpritemapGreypants, "graphics/player/player-spritemap-greypants.png");
+        add(ggj::ResourceName::GraphicsPlayerSpritemapBluepants, "graphics/player/player-spritemap-bluepants.png");
+        add(ggj::ResourceName::GraphicsPlayerSpritemapRedpants, "graphics/player/player-spritemap-redpants.png");
         add(ggj::ResourceName::GraphicsPowerupsRpgIcons, "graphics/powerups/rpg-icons.png");
         add(ggj::ResourceName::GraphicsShootFire, "graphics/shoot/fire/fire.png");
         add(ggj::ResourceName::GraphicsTilesJungleTerrain, "graphics/tiles/jungle_terrain.png");

@@ -78,7 +78,7 @@ namespace ggj
         GraphicsMeleeSwoosh = 167,
         GraphicsPlayerSpritemapGreenpants = 168,
         GraphicsPlayerSpritemapGreypants = 169,
-        GraphicsPlayerSpritemap = 170,
+        GraphicsPlayerSpritemapBluepants = 170,
         GraphicsPlayerSpritemapRedpants = 171,
         GraphicsPowerupsRpgIcons = 172,
         GraphicsShootFire = 173,

@@ -27,6 +27,10 @@ namespace ggj
         PortalTeleport = 14,
         PortalClosing = 15,
         PortalClosed = 16,
+        PlayerIdleNG = 17,
+        PlayerWalkNG = 18,
+        PlayerJumpNG = 19,
+        PlayerFallNG = 20,
     };
 
 } // ggj

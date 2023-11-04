@@ -35,53 +35,52 @@
          "name":"objects",
          "objects":[
                 {
-                 "class":"PhysicsObject",
                  "height":32,
                  "id":1,
                  "name":"",
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":368,
                  "x":16,
                  "y":208
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":208,
                  "id":2,
                  "name":"",
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":0,
                  "y":0
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":3,
                  "name":"",
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":368,
                  "x":16,
                  "y":-16
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":208,
                  "id":4,
                  "name":"",
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":384,
                  "y":0
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "ellipse":true,
-                 "height":16,
+                 "height":32,
                  "id":5,
                  "name":"player1",
                  "properties":[
@@ -98,17 +97,17 @@
                         {
                          "name":"sprite",
                          "type":"string",
-                         "value":"characters.png"
+                         "value":"player-spritemap-bluepants.png"
                         }, 
                         {
                          "name":"sprite_size_x",
                          "type":"int",
-                         "value":32
+                         "value":46
                         }, 
                         {
                          "name":"sprite_size_y",
                          "type":"int",
-                         "value":32
+                         "value":50
                         }, 
                         {
                          "name":"userdata_objecttype",
@@ -122,13 +121,13 @@
                          "value":1
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
-                 "width":16,
+                 "width":24,
                  "x":25.0880552955576,
                  "y":19.4893800849593
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "ellipse":true,
                  "height":21,
                  "id":6,
@@ -150,13 +149,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":21,
                  "x":50.3973470506842,
                  "y":73.3406496991749
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":21,
                  "id":7,
                  "name":"",
@@ -177,13 +176,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":26,
                  "x":100.715347050684,
                  "y":49.6133296991749
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "ellipse":true,
                  "height":19,
                  "id":8,
@@ -205,13 +204,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":20,
                  "x":72.6243470506842,
                  "y":77.1133496991749
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":25,
                  "id":9,
                  "name":"",
@@ -232,13 +231,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":25,
                  "x":97.8513470506842,
                  "y":71.3406496991749
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "ellipse":true,
                  "height":21,
                  "id":10,
@@ -260,13 +259,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":21,
                  "x":152.893119100087,
                  "y":84.820176168708
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":21,
                  "id":11,
                  "name":"",
@@ -287,13 +286,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":26,
                  "x":203.211119100087,
                  "y":61.092856168708
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "ellipse":true,
                  "height":19,
                  "id":12,
@@ -315,13 +314,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":20,
                  "x":175.120119100087,
                  "y":88.592876168708
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":25,
                  "id":13,
                  "name":"",
@@ -342,13 +341,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":25,
                  "x":200.347119100087,
                  "y":82.820176168708
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "ellipse":true,
                  "height":21,
                  "id":14,
@@ -370,13 +369,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":21,
                  "x":77.8662139599242,
                  "y":128.688366605853
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":21,
                  "id":15,
                  "name":"",
@@ -397,13 +396,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":26,
                  "x":128.184213959924,
                  "y":104.961046605853
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "ellipse":true,
                  "height":19,
                  "id":16,
@@ -425,13 +424,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":20,
                  "x":100.093213959924,
                  "y":132.461066605852
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":25,
                  "id":17,
                  "name":"",
@@ -452,13 +451,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":25,
                  "x":125.320213959924,
                  "y":126.688366605853
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "ellipse":true,
                  "height":21,
                  "id":18,
@@ -480,13 +479,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":21,
                  "x":188.151664685082,
                  "y":123.768569547481
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":21,
                  "id":19,
                  "name":"",
@@ -507,13 +506,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":26,
                  "x":238.469664685082,
                  "y":100.041249547481
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "ellipse":true,
                  "height":19,
                  "id":20,
@@ -535,13 +534,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":20,
                  "x":210.378664685082,
                  "y":127.541269547481
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":25,
                  "id":21,
                  "name":"",
@@ -562,13 +561,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":25,
                  "x":235.605664685082,
                  "y":121.768569547481
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "ellipse":true,
                  "height":21,
                  "id":22,
@@ -590,13 +589,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":21,
                  "x":248.419178650131,
                  "y":72.1107004345821
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":21,
                  "id":23,
                  "name":"",
@@ -617,13 +616,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":26,
                  "x":298.737178650131,
                  "y":48.3833804345821
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "ellipse":true,
                  "height":19,
                  "id":24,
@@ -645,13 +644,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":20,
                  "x":270.646178650131,
                  "y":75.8834004345821
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":25,
                  "id":25,
                  "name":"",
@@ -672,6 +671,7 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":25,
                  "x":295.873178650131,
@@ -679,7 +679,6 @@
                 },
             
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":26,
                  "name":"",
@@ -711,13 +710,13 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":272,
                  "y":192
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":27,
                  "name":"",
@@ -749,13 +748,13 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":240,
                  "y":192
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":28,
                  "name":"",
@@ -787,13 +786,13 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":208,
                  "y":192
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":29,
                  "name":"",
@@ -825,13 +824,13 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":176,
                  "y":192
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "ellipse":true,
                  "height":21,
                  "id":30,
@@ -853,13 +852,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":21,
                  "x":270.558265412802,
                  "y":118.028796312715
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":21,
                  "id":31,
                  "name":"",
@@ -880,13 +879,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":26,
                  "x":320.876265412802,
                  "y":94.3014963127146
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "ellipse":true,
                  "height":19,
                  "id":32,
@@ -908,13 +907,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":20,
                  "x":292.785265412802,
                  "y":121.801496312715
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":25,
                  "id":33,
                  "name":"",
@@ -935,13 +934,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":25,
                  "x":318.012265412802,
                  "y":116.028796312715
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "ellipse":true,
                  "height":21,
                  "id":34,
@@ -963,13 +962,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":21,
                  "x":109.43491175114,
                  "y":26.6025676446472
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":21,
                  "id":35,
                  "name":"",
@@ -990,13 +989,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":26,
                  "x":159.75291175114,
                  "y":2.87526764464716
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "ellipse":true,
                  "height":19,
                  "id":36,
@@ -1018,13 +1017,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":20,
                  "x":131.66191175114,
                  "y":30.3752676446472
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":25,
                  "id":37,
                  "name":"",
@@ -1045,13 +1044,13 @@
                          "value":""
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":25,
                  "x":156.88891175114,
                  "y":24.6025676446472
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":38,
                  "name":"",
@@ -1083,13 +1082,13 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":144,
                  "y":192
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":39,
                  "name":"",
@@ -1121,13 +1120,13 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":368,
                  "y":192
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":40,
                  "name":"",
@@ -1159,13 +1158,13 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":336,
                  "y":192
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":41,
                  "name":"",
@@ -1197,13 +1196,13 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":112,
                  "y":192
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":42,
                  "name":"",
@@ -1235,13 +1234,13 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":80,
                  "y":192
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":43,
                  "name":"",
@@ -1273,13 +1272,13 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":48,
                  "y":192
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":44,
                  "name":"",
@@ -1311,13 +1310,13 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":16,
                  "y":192
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":46,
                  "name":"",
@@ -1349,13 +1348,13 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":304,
                  "y":192
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":47,
                  "name":"",
@@ -1387,13 +1386,13 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":32,
                  "y":192
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":48,
                  "name":"",
@@ -1425,13 +1424,13 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":64,
                  "y":192
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":49,
                  "name":"",
@@ -1463,13 +1462,13 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":96,
                  "y":192
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":50,
                  "name":"",
@@ -1501,13 +1500,13 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":128,
                  "y":192
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":51,
                  "name":"",
@@ -1539,6 +1538,7 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":160,
@@ -1546,7 +1546,6 @@
                 },
             
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":52,
                  "name":"",
@@ -1578,13 +1577,13 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":192,
                  "y":192
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":53,
                  "name":"",
@@ -1616,13 +1615,13 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":224,
                  "y":192
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":54,
                  "name":"",
@@ -1654,13 +1653,13 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":256,
                  "y":192
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":55,
                  "name":"",
@@ -1692,13 +1691,13 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":288,
                  "y":192
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":56,
                  "name":"",
@@ -1730,13 +1729,13 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":320,
                  "y":192
                 }, 
                 {
-                 "class":"PhysicsObject",
                  "height":16,
                  "id":57,
                  "name":"",
@@ -1768,6 +1767,7 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
                  "x":352,
@@ -1840,7 +1840,7 @@
          "value":10
         }],
  "renderorder":"left-down",
- "tiledversion":"1.9.2",
+ "tiledversion":"1.10.2",
  "tileheight":16,
  "tilesets":[
         {
@@ -1858,6 +1858,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.9",
+ "version":"1.10",
  "width":25
 }
