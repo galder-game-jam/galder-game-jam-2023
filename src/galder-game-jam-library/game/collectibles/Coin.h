@@ -11,7 +11,6 @@
 
 namespace ggj
 {
-
     class Coin : public PhysicsSprite
     {
         public:
@@ -43,4 +42,4 @@ namespace ggj
 
 } // ggj
 
-#endif //GAME_DEV_TEMPLATE_BAT_H
+#endif //GAME_DEV_TEMPLATE_COIN_H

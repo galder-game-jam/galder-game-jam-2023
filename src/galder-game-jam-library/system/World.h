@@ -47,6 +47,7 @@ namespace ggj
             void generateBat(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
             void generateSnake(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
             void generateCoin(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
+            void generateSpider(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
             void generateGenericPhysicsObject(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
 
         private:

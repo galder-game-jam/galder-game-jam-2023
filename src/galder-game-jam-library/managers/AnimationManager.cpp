@@ -112,6 +112,17 @@ namespace ggj
                                 {raylib::Vector2(16 * 7,16), 75},
                         }
                 };
+
+        m_animations[AnimationName::EnemySpiderWalk] =
+                {
+                        raylib::Vector2(32, 21),
+                        {
+                                {raylib::Vector2(32 * 0,21), 70},
+                                {raylib::Vector2(32 * 1,21), 70},
+                                {raylib::Vector2(32 * 2,21), 70},
+                                {raylib::Vector2(32 * 3,21), 70},
+                        }
+                };
         return true;
     }
 } // ggj
