@@ -2147,6 +2147,11 @@
          "name":"is_startup_map",
          "type":"bool",
          "value":true
+        }, 
+        {
+         "name":"portal_timer",
+         "type":"int",
+         "value":10
         }],
  "renderorder":"left-down",
  "tiledversion":"1.10.2",

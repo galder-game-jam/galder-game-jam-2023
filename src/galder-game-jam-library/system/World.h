@@ -70,6 +70,8 @@ namespace ggj
             raylib::Vector2 m_cameraMax {0.f, 0.f};
             raylib::Vector2 m_cameraDefault {0.f, 0.f};
 
+            int m_portalTimer{5};
+
             Player *m_player = nullptr;
 
             b2World m_world{{0.f, 0.f}};

@@ -29,7 +29,10 @@ namespace ggj
             m_cameraMax = raylib::Vector2(m_map->get<float>("camera_max_x"), m_map->get<float>("camera_max_y"));
             m_camera.target = raylib::Vector2(m_camera.target.x, m_cameraMax.GetY());
         }
-
+        if (m_map->getProp("portal_timer") != nullptr)
+        {
+            m_portalTimer = m_map->get<int>("portal_timer");
+        }
         m_cameraDefault = m_camera.target;
 
         int32_t layerIndex = 0;
@@ -584,7 +587,7 @@ namespace ggj
                                                                                                                       (float) generatorData.size.y),
                                                                                                               spriteSize, r,
                                                                                                               tex, generatorData.userData,
-                                                                                                              generatorData.velocity);
+                                                                                                              generatorData.velocity, m_portalTimer);
                 m_userDataManager.addUserData(body, physicsObject);
             }
         }
