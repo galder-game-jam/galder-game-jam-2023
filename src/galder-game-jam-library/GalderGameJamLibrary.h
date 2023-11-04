@@ -23,6 +23,7 @@
 #include "game/enemies/Snake.h"
 #include "game/enemies/Spider.h"
 #include "game/enemies/Thing.h"
+#include "game/enemies/Ghost.h"
 
 // Collectibles
 #include "game/collectibles/Coin.h"

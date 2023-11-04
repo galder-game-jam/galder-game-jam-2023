@@ -134,6 +134,17 @@ namespace ggj
                                 {raylib::Vector2(33 * 3,45), 200},
                         }
                 };
+
+        m_animations[AnimationName::EnemyGhostFly] =
+                {
+                        raylib::Vector2(31, 44),
+                        {
+                                {raylib::Vector2(31 * 0,44), 100},
+                                {raylib::Vector2(31 * 1,44), 100},
+                                {raylib::Vector2(31 * 2,44), 100},
+                                {raylib::Vector2(31 * 3,44), 100},
+                        }
+                };
         return true;
     }
 } // ggj

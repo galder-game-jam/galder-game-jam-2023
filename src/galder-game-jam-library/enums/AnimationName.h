@@ -21,6 +21,7 @@ namespace ggj
         CoinSpin = 8,
         EnemySpiderWalk = 9,
         EnemyThingWalk = 10,
+        EnemyGhostFly = 11,
     };
 
 } // ggj
