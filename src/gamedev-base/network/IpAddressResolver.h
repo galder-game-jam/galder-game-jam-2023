@@ -12,8 +12,8 @@ namespace ggj
     class IpAddressResolver : public ggj::IIpAddressResolver
     {
         public:
-            const std::string getLocalIpAddress() const override;
-            const std::string getPublicIpAddress() const override;
+            [[nodiscard]] std::string getLocalIpAddress() const override;
+            [[nodiscard]] std::string getPublicIpAddress() const override;
     };
 }
 

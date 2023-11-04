@@ -10,7 +10,6 @@ if(NOT CMAKE_BUILD_TYPE)
             "Choose the type of build, options are: Debug Release
 RelWithDebInfo MinSizeRel."
             FORCE)
-
 endif(NOT CMAKE_BUILD_TYPE)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -45,6 +44,8 @@ elseif(WIN32)
     endif()
 endif()
 
+#set (CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+#set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 # Makes sure everything is statically linked
 set(BUILD_SHARED_LIBS OFF)
 
@@ -53,12 +54,13 @@ include_directories(${PROJECT_SOURCE_DIR}/external_libs
                     ${PROJECT_SOURCE_DIR}/external_libs/raylib-cpp/include
                     ${PROJECT_SOURCE_DIR}/external_libs/fmt/include
                     ${PROJECT_SOURCE_DIR}/external_libs/box2d/include
+                    ${PROJECT_SOURCE_DIR}/external_libs/GameNetworkingSockets/include
         )
 add_subdirectory(external_libs/fmt)
 add_subdirectory(external_libs/raylib)
 add_subdirectory(external_libs/raylib-cpp)
 add_subdirectory(external_libs/box2d)
-# add_subdirectory(external_libs/GameNetworkingSockets)
+add_subdirectory(external_libs/GameNetworkingSockets)
 add_subdirectory(src)
 add_subdirectory(tests)
 

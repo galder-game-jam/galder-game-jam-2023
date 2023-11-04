@@ -43,7 +43,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
 endif()
 
 option(BUILD_STATIC_LIB "Build the static link version of the client library" ON)
-option(BUILD_SHARED_LIB "Build the shared library version of the client library" OFF)
+option(BUILD_SHARED_LIB "Build the shared library version of the client library" ON)
 option(BUILD_EXAMPLES "Build the included examples" OFF)
 option(BUILD_TESTS "Build crypto, pki and network connection tests" OFF)
 option(BUILD_TOOLS "Build cert management tool" OFF)
