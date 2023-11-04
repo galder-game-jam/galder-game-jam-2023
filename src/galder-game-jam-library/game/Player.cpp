@@ -43,14 +43,14 @@ namespace ggj
         if(m_inputManager.keyDown(KeyboardKey::A) && !m_inputManager.keyDown(KeyboardKey::D))
         {
             m_flip = true;
-            m_velocity = raylib::Vector2{m_velocity.x - (10.f * timeDelta), m_velocity.y};
+            m_velocity = raylib::Vector2{-7.f, m_velocity.y};
             if(m_velocity.y < 0.2f && m_velocity.y > -0.2f)
                 setPlayerState(PlayerState::Walk);
         }
         else if(m_inputManager.keyDown(KeyboardKey::D) && !m_inputManager.keyDown(KeyboardKey::A))
         {
             m_flip = false;
-            m_velocity = raylib::Vector2{m_velocity.x + (10.f * timeDelta), m_velocity.y};
+            m_velocity = raylib::Vector2{7.f, m_velocity.y};
             if(m_velocity.y < 0.2f && m_velocity.y > -0.2f)
                 setPlayerState(PlayerState::Walk);
         }
