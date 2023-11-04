@@ -229,8 +229,8 @@ namespace ggj
                 m_player2->setHasClearedLevel(false);
             }
             m_camera.target = (m_player->cameraShouldFollowPlayer())
-                              ? raylib::Vector2((float) (int) (std::round(m_player->getPosition().x) - (float) 400.f / 2),
-                                                (float) (int) (std::round(m_player->getPosition().y) - (float) 240.f / 2))
+                              ? raylib::Vector2((float) (int) (std::round(m_player->getPosition().x) - (float) 480.f / 2),
+                                                (float) (int) (std::round(m_player->getPosition().y) - (float) 270.f / 2))
                               : m_cameraDefault;
 
             m_debugManager.setText(1, fmt::format("Player1Pos: ({0}, {1})", (int) m_player->getPosition().x, (int) m_player->getPosition().y));
