@@ -3,6 +3,7 @@
 //
 
 #include "PhysicsObject.h"
+#include "box2d/b2_body.h"
 
 namespace ggj
 {
@@ -66,5 +67,10 @@ namespace ggj
     UserData* PhysicsObject::getUserData()
     {
         return &m_userData;
+    }
+    
+    b2Body *PhysicsObject::getBody()
+    {
+        return m_body;
     }
 } // dev

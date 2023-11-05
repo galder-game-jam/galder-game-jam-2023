@@ -13,7 +13,9 @@ namespace ggj
         Idle = 0,
         Walk = 1,
         Jump = 2,
-        Fall = 3
+        Fall = 3,
+        AttackGrounded = 4,
+        AttackAir = 5
     };
 
 } // ggj

@@ -166,6 +166,10 @@ namespace ggj
                         return AnimationName::PlayerJumpNG;
                     case PlayerState::Fall:
                         return AnimationName::PlayerFallNG;
+                    case PlayerState::AttackGrounded:
+                        return AnimationName::PlayerAttackGroundedNG;
+                    case PlayerState::AttackAir:
+                        return AnimationName::PlayerAttackAirNG;
                     default:
                         return AnimationName::None;
                 }

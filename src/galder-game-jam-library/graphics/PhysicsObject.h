@@ -38,12 +38,14 @@ namespace ggj
             }
             void update(float timeDelta) override;
             void draw() override;
-
+            
+            
             virtual void beginContact(PhysicsObject* a, PhysicsObject* b, b2Contact *contact){}
             virtual void endContact(PhysicsObject* a, PhysicsObject* b, b2Contact *contact){}
             virtual void preSolve(PhysicsObject* a, PhysicsObject* b, b2Contact *contact, const b2Manifold *oldManifold){}
             virtual void postSolve(PhysicsObject* a, PhysicsObject* b, b2Contact *contact, const b2ContactImpulse *impulse){}
 
+            b2Body *getBody();
             UserData* getUserData();
 
             //Static helpers
