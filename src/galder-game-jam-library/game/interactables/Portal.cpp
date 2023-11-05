@@ -6,7 +6,7 @@ namespace ggj
     {
         if(b->getUserData()->getObjectType() == ObjectType::Player)
         {
-            if (!m_hasTeleported)
+            if (!m_hasTeleported && m_activationTimer > m_activationTimeInSeconds)
             {
                 m_hasTeleported = true;
                 teleport();
