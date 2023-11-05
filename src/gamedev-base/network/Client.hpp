@@ -2,31 +2,88 @@
 // Created by robin on 03.11.23.
 //
 
-#include "Client.h"
+#ifndef GALDER_GAME_JAM_2023_PROJECT_CLIENT_HPP
+#define GALDER_GAME_JAM_2023_PROJECT_CLIENT_HPP
+
+#include "../interfaces/system/ILogger.h"
+#include "../interfaces/network/IIpAddressResolver.h"
+#include "../interfaces/network/IClient.h"
+#include "fmt/format.h"
+#include "StringTrim.hpp"
+
+#include <steam/steamnetworkingsockets.h>
+#include <steam/isteamnetworkingutils.h>
+#ifndef STEAMNETWORKINGSOCKETS_OPENSOURCE
+#include <steam/steam_api.h>
+#endif
+
+#include <chrono>
+#include <thread>
+#include <mutex>
+#include <map>
+#include <queue>
 
 namespace ggj
 {
-    static Client *callbackInstance;
-    static void SteamNetConnectionStatusChangedCallback( SteamNetConnectionStatusChangedCallback_t *pInfo )
+    template <class TClientData, class TServerData>
+    class Client : public IClient<TClientData, TServerData>
     {
-        callbackInstance->onSteamNetConnectionStatusChanged(pInfo);
-    }
-    
-    // trim from start (in place)
-    static inline void ltrim(std::string &s) {
-        s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](int ch) {
-            return !std::isspace(ch);
-        }));
-    }
+        public:
+            Client(ILogger &logger, IIpAddressResolver &ipAddressResolver) : m_logger {logger}, m_resolver {ipAddressResolver}
+            {
+            
+            }
+            bool initialize() override;
+            void connect(uint16_t port, std::string ipAddress) override;
+            [[nodiscard]] ServerHostInfo getServerInfo() const override;
+            void ping() const override;
+            void disconnect() const override;
+            
+            virtual void onSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t *pInfo);
+            
+        protected:
+            bool m_quit = false;
+            ILogger &m_logger;
+            IIpAddressResolver &m_resolver;
+            
+            bool send(const TClientData &data) override;
+            TServerData receive() override;
+            void clientProgram() override
+            {
+                pollIncomingMessages();
+                pollConnectionStateChanges();
+                pollLocalUserInput();
+                std::this_thread::sleep_for( std::chrono::milliseconds( 10 ) );
+            }
+            
+            void pollIncomingMessages();
+            void pollConnectionStateChanges();
+            void pollLocalUserInput();
+            bool localUserInputGetNext(std::string &result);
+            
+        //private:
+            
+            //Steam network stuff
+            ISteamNetworkingSockets *m_netInterface;
+            HSteamNetConnection m_connection;
+            std::mutex m_mutexUserInputQueue;
+            std::queue< std::string > m_queueUserInput;
+            //std::thread *m_threadUserInput = nullptr;
+            
 
-    // trim from end (in place)
-    static inline void rtrim(std::string &s) {
-        s.erase(std::find_if(s.rbegin(), s.rend(), [](int ch) {
-            return !std::isspace(ch);
-        }).base(), s.end());
+    };
+    
+    template<class TClientData, class TServerData>
+    static Client<TClientData, TServerData> *clientCallbackInstance;
+    
+    template<class TClientData, class TServerData>
+    static void SteamClientNetConnectionStatusChangedCallback( SteamNetConnectionStatusChangedCallback_t *pInfo )
+    {
+        clientCallbackInstance<TClientData, TServerData>->onSteamNetConnectionStatusChanged(pInfo);
     }
     
-    void Client::connect(uint16_t port, std::string ipAddress)
+    template<class TClientData, class TServerData>
+    void Client<TClientData, TServerData>::connect(uint16_t port, std::string ipAddress)
     {
         // Select instance to use.  For now we'll always use the default.
         m_netInterface = SteamNetworkingSockets();
@@ -40,36 +97,37 @@ namespace ggj
         serverAddr.ToString( szAddr, sizeof(szAddr), true );
         m_logger.information(fmt::format("Connecting to chat server at {0}", szAddr));
         SteamNetworkingConfigValue_t opt;
-        opt.SetPtr( k_ESteamNetworkingConfig_Callback_ConnectionStatusChanged, (void*)SteamNetConnectionStatusChangedCallback );
+        opt.SetPtr( k_ESteamNetworkingConfig_Callback_ConnectionStatusChanged, (void*)SteamClientNetConnectionStatusChangedCallback<TClientData, TServerData> );
         m_connection = m_netInterface->ConnectByIPAddress( serverAddr, 1, &opt );
         if ( m_connection == k_HSteamNetConnection_Invalid )
             m_logger.critical(fmt::format("Failed to create connection"));
         
         while ( !m_quit )
         {
-            pollIncomingMessages();
-            pollConnectionStateChanges();
-            pollLocalUserInput();
-            std::this_thread::sleep_for( std::chrono::milliseconds( 10 ) );
+            clientProgram();
         }
     }
     
-    ServerHostInfo Client::getServerInfo() const
+    template<class TClientData, class TServerData>
+    ServerHostInfo Client<TClientData, TServerData>::getServerInfo() const
     {
         return {};
     }
     
-    void Client::ping() const
+    template<class TClientData, class TServerData>
+    void Client<TClientData, TServerData>::ping() const
     {
     
     }
     
-    void Client::disconnect() const
+    template<class TClientData, class TServerData>
+    void Client<TClientData, TServerData>::disconnect() const
     {
     
     }
     
-    void Client::onSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t *pInfo)
+    template<class TClientData, class TServerData>
+    void Client<TClientData, TServerData>::onSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t *pInfo)
     {
         //assert( pInfo->m_hConn == m_connection || m_connection == k_HSteamNetConnection_Invalid );
         
@@ -128,7 +186,8 @@ namespace ggj
         }
     }
     
-    void Client::pollIncomingMessages()
+    template<class TClientData, class TServerData>
+    void Client<TClientData, TServerData>::pollIncomingMessages()
     {
         while (!m_quit)
         {
@@ -148,13 +207,15 @@ namespace ggj
         }
     }
     
-    void Client::pollConnectionStateChanges()
+    template<class TClientData, class TServerData>
+    void Client<TClientData, TServerData>::pollConnectionStateChanges()
     {
-        callbackInstance = this;
+        clientCallbackInstance<TClientData, TServerData> = this;
         m_netInterface->RunCallbacks();
     }
     
-    void Client::pollLocalUserInput()
+    template<class TClientData, class TServerData>
+    void Client<TClientData, TServerData>::pollLocalUserInput()
     {
         std::string cmd;
         while ( !m_quit && localUserInputGetNext( cmd ))
@@ -180,7 +241,8 @@ namespace ggj
         }
     }
     
-    bool Client::localUserInputGetNext(std::string &result)
+    template<class TClientData, class TServerData>
+    bool Client<TClientData, TServerData>::localUserInputGetNext(std::string &result)
     {
         bool got_input = false;
         m_mutexUserInputQueue.lock();
@@ -196,7 +258,8 @@ namespace ggj
         return got_input;
     }
     
-    bool Client::initialize()
+    template<class TClientData, class TServerData>
+    bool Client<TClientData, TServerData>::initialize()
     {
         SteamDatagramErrMsg errMsg;
         if (!GameNetworkingSockets_Init( nullptr, errMsg ))
@@ -206,4 +269,31 @@ namespace ggj
         }
         return true;
     }
+    
+    template<class TClientData, class TServerData>
+    bool Client<TClientData, TServerData>::send(const TClientData &data)
+    {
+        EResult result = m_netInterface->SendMessageToConnection( m_connection, &data, sizeof(data),
+                                                 k_nSteamNetworkingSend_Reliable, nullptr );
+        return result == k_EResultOK;
+    }
+    template<class TClientData, class TServerData>
+    TServerData Client<TClientData, TServerData>::receive()
+    {
+        static TServerData defaultValue {};
+        ISteamNetworkingMessage *incomingMsg = nullptr;
+        int numMsgs = m_netInterface->ReceiveMessagesOnConnection(m_connection, &incomingMsg, 1 );
+        if ( numMsgs == 0 || incomingMsg == nullptr )
+            return defaultValue;
+
+        TServerData* dataPtr = static_cast<TServerData*>(incomingMsg->m_pData);
+        TServerData data = *dataPtr;
+        
+        incomingMsg->Release();
+        
+        return data;
+    }
+    
 } // ggj
+
+#endif //GALDER_GAME_JAM_2023_PROJECT_CLIENT_HPP

@@ -9,8 +9,8 @@ auto buildInjectorForNetworking(ggj::ILogger &logger)
     auto injector = boost::di::make_injector(
             boost::di::bind<ggj::IIpAddressResolver>().to<ggj::IpAddressResolver>(),
             boost::di::bind<ggj::IExecutableInfo>().to<ggj::ExecutableInfo>(),
-            boost::di::bind<ggj::IServer>().to<ggj::Server>(),
-            boost::di::bind<ggj::IClient>().to<ggj::Client>(),
+            boost::di::bind<ggj::IServer<ggj::ServerNetworkData, ggj::PlayerNetworkData>>().to<ggj::GalderServer>(),
+            boost::di::bind<ggj::IClient<ggj::PlayerNetworkData, ggj::ServerNetworkData>>().to<ggj::GalderClient>(),
             boost::di::bind<ggj::ILogger>().to(logger)
     );
     
@@ -22,8 +22,8 @@ struct App
     ggj::ILogger &logger;
     ggj::IExecutableInfo &executableInfo;
     ggj::IIpAddressResolver &ipResolver;
-    ggj::IClient &client;
-    ggj::IServer &server;
+    ggj::IClient<ggj::PlayerNetworkData, ggj::ServerNetworkData> &client;
+    ggj::IServer<ggj::ServerNetworkData, ggj::PlayerNetworkData> &server;
     
     bool initialize()
     {
@@ -45,7 +45,7 @@ int testNetworking()
     if(!app.initialize())
         app.logger.critical("App initialization failed!");
     
-    app.server.initialize(13337, "Galders hjem");
+    app.server.initialize(13338, "Galders hjem");
     app.server.run();
     
     return 0;
