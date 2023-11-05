@@ -9,6 +9,7 @@ namespace ggj
     void Player::draw()
     {
         PhysicsSprite::draw();
+        m_hitbox.draw();
     }
 
     void Player::update(float timeDelta)
@@ -32,6 +33,8 @@ namespace ggj
             m_animation.update(timeDelta);
             m_drawingRect = m_animation.getDrawingRect();
         }
+        
+        m_hitbox.update(timeDelta);
     }
 
     void Player::handleInputs(float timeDelta)
@@ -184,5 +187,9 @@ namespace ggj
     void Player::setHasClearedLevel(bool hasClearedLevel)
     {
         m_hasClearedLevel = hasClearedLevel;
+    }
+    Hitbox *Player::getHitbox()
+    {
+        return &m_hitbox;
     }
 } // dev
