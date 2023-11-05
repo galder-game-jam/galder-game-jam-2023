@@ -245,6 +245,24 @@ namespace ggj
                                 {raylib::Vector2(46 * 4,50 * 1), 100},
                         }
                 };
+
+        m_animations[AnimationName::PowerUpCycle] =
+                {
+                        raylib::Vector2(50, 50),
+                        {
+                                {raylib::Vector2(50 * 0,50 * 5), 70},
+                                {raylib::Vector2(50 * 1,50 * 5), 70},
+                                {raylib::Vector2(50 * 2,50 * 5), 70},
+                                {raylib::Vector2(50 * 3,50 * 5), 70},
+                                {raylib::Vector2(50 * 4,50 * 5), 70},
+                                {raylib::Vector2(50 * 5,50 * 5), 70},
+                                {raylib::Vector2(50 * 6,50 * 5), 70},
+                                {raylib::Vector2(50 * 7,50 * 5), 70},
+                                {raylib::Vector2(50 * 8,50 * 5), 70},
+                                {raylib::Vector2(50 * 9,50 * 5), 70},
+                                {raylib::Vector2(50 * 10,50 * 5), 70},
+                        }
+                };
         return true;
     }
 } // ggj

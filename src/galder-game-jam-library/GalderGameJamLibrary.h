@@ -31,6 +31,7 @@
 
 //interactables
 #include "game/interactables/Portal.h"
+#include "game/interactables/PowerUp.h"
 
 //Managers
 #include "managers/AnimationManager.h"
