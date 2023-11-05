@@ -12,6 +12,7 @@ namespace ggj
     class ServerNetworkData
     {
         public:
+            bool isValid {};
             std::string message {}; //Just sending a message, for now
     };
 }

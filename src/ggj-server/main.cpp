@@ -45,7 +45,7 @@ int testNetworking()
     if(!app.initialize())
         app.logger.critical("App initialization failed!");
     
-    app.server.initialize(13337, "Galders hjem");
+    app.server.initialize(13338, "Galders hjem");
     app.server.run();
     
     return 0;

@@ -42,13 +42,26 @@ namespace ggj
             void onSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t *pInfo);
             
         protected:
-            bool send(const TClientData &data) override;
-            bool receive(const TServerData &data) override;
-        
-        private:
+            bool m_quit = false;
             ILogger &m_logger;
             IIpAddressResolver &m_resolver;
-            bool m_quit = false;
+            
+            bool send(const TClientData &data) override;
+            TServerData receive() override;
+            void clientProgram() override
+            {
+                pollIncomingMessages();
+                pollConnectionStateChanges();
+                pollLocalUserInput();
+                std::this_thread::sleep_for( std::chrono::milliseconds( 10 ) );
+            }
+            
+            void pollIncomingMessages();
+            void pollConnectionStateChanges();
+            void pollLocalUserInput();
+            bool localUserInputGetNext(std::string &result);
+            
+        //private:
             
             //Steam network stuff
             ISteamNetworkingSockets *m_netInterface;
@@ -57,10 +70,7 @@ namespace ggj
             std::queue< std::string > m_queueUserInput;
             //std::thread *m_threadUserInput = nullptr;
             
-            void pollIncomingMessages();
-            void pollConnectionStateChanges();
-            void pollLocalUserInput();
-            bool localUserInputGetNext(std::string &result);
+
     };
     
     template<class TClientData, class TServerData>
@@ -94,10 +104,7 @@ namespace ggj
         
         while ( !m_quit )
         {
-            pollIncomingMessages();
-            pollConnectionStateChanges();
-            pollLocalUserInput();
-            std::this_thread::sleep_for( std::chrono::milliseconds( 10 ) );
+            clientProgram();
         }
     }
     
@@ -266,12 +273,22 @@ namespace ggj
     template<class TClientData, class TServerData>
     bool Client<TClientData, TServerData>::send(const TClientData &data)
     {
-        return false;
+        EResult result = m_netInterface->SendMessageToConnection( m_connection, &data, sizeof(data),
+                                                 k_nSteamNetworkingSend_Reliable, nullptr );
+        return result == k_EResultOK;
     }
     template<class TClientData, class TServerData>
-    bool Client<TClientData, TServerData>::receive(const TServerData &data)
+    TServerData Client<TClientData, TServerData>::receive()
     {
-        return false;
+        static TServerData defaultValue {};
+        ISteamNetworkingMessage *incomingMsg = nullptr;
+        int numMsgs = m_netInterface->ReceiveMessagesOnConnection(m_connection, &incomingMsg, 1 );
+        if ( numMsgs == 0 || incomingMsg == nullptr )
+            return defaultValue;
+
+        TServerData* data = static_cast<TServerData*>(incomingMsg->m_pData);
+        incomingMsg->Release();
+        return *data;
     }
     
 } // ggj

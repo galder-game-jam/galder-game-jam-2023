@@ -23,7 +23,8 @@ namespace ggj
         
         protected:
             virtual bool send(const TClientData &data) = 0;
-            virtual bool receive(const TServerData &data) = 0;
+            virtual TServerData receive() = 0;
+            virtual void clientProgram() = 0;
     };
 }
 

@@ -38,17 +38,30 @@ namespace ggj
             void run() override;
             void stop() override;
             
-            void onSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t *pInfo);
+            virtual void onSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t *pInfo);
             
         protected:
             bool send(HSteamNetConnection connection, const TServerData &data) override;
-            bool receive(HSteamNetConnection connection, const TClientData &data) override;
-        
-        private:
+            TClientData receive(HSteamNetConnection connection) override;
+            
+            void pollIncomingMessages();
+            void pollConnectionStateChanges();
+            void pollLocalUserInput();
+            
+            void serverProgram() override
+            {
+                pollIncomingMessages();
+                pollConnectionStateChanges();
+                pollLocalUserInput();
+                std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            }
+            
             ILogger &m_logger;
             IIpAddressResolver &m_resolver;
             ServerHostInfo m_info{};
-            
+            bool m_quit = false;
+        
+        //private:
             //Steam networking stuff
             HSteamListenSocket m_listenSocket{};
             HSteamNetPollGroup m_pollGroup{};
@@ -58,14 +71,9 @@ namespace ggj
             std::queue< std::string > m_queueUserInput;
             std::thread *m_threadUserInput = nullptr;
             
-            bool m_quit = false;
-            
-            void pollIncomingMessages();
             void sendStringToClient(HSteamNetConnection conn, const char *str);
             void sendStringToAllClients(const char *str, HSteamNetConnection except = k_HSteamNetConnection_Invalid);
             void setClientNick(HSteamNetConnection conn, const std::string &nick);
-            void pollConnectionStateChanges();
-            void pollLocalUserInput();
             bool localUserInputGetNext(std::string &result);
     };
     
@@ -115,10 +123,7 @@ namespace ggj
         
         while ( !m_quit )
         {
-            pollIncomingMessages();
-            pollConnectionStateChanges();
-            pollLocalUserInput();
-            std::this_thread::sleep_for( std::chrono::milliseconds( 10 ) );
+            serverProgram();
         }
         
         // Close all the connections
@@ -393,8 +398,8 @@ namespace ggj
                 sprintf( nick, "GalderLover%d", 10000 + ( rand() % 100000 ) );
                 
                 // Send them a welcome message
-                sprintf( temp, "Welcome, stranger.  Thou art known to us for now as '%s'; upon thine command '/nick' we shall know thee otherwise.", nick );
-                sendStringToClient( pInfo->m_hConn, temp );
+                std::string helloMsg = fmt::format("Welcome to {0}, stranger.  Thou art known to us for now as '{1}'.", m_info.getName(), nick);
+                sendStringToClient( pInfo->m_hConn, helloMsg.c_str() );
                 
                 // Also send them a list of everybody who is already connected
                 if ( m_mapClients.empty() )
@@ -448,13 +453,22 @@ namespace ggj
     template<class TServerData, class TClientData>
     bool Server<TServerData, TClientData>::send(HSteamNetConnection connection, const TServerData &data)
     {
-        EResult result = m_netInterface->SendMessageToConnection(connection, data, sizeof(data), k_nSteamNetworkingSend_Reliable, nullptr );
+        EResult result = m_netInterface->SendMessageToConnection(connection, &data, sizeof(data), k_nSteamNetworkingSend_Reliable, nullptr );
         return result == k_EResultOK;
     }
     template<class TServerData, class TClientData>
-    bool Server<TServerData, TClientData>::receive(HSteamNetConnection connection, const TClientData &data)
+    TClientData Server<TServerData, TClientData>::receive(HSteamNetConnection connection)
     {
-        return false;
+        static TClientData defaultValue {};
+        ISteamNetworkingMessage *incomingMsg = nullptr;
+        int numMsgs = m_netInterface->ReceiveMessagesOnPollGroup(m_pollGroup, &incomingMsg, 1 );
+        if ( numMsgs == 0 || incomingMsg == nullptr )
+            return defaultValue;
+        
+        TClientData *dataPtr = (TClientData*)incomingMsg->m_pData;
+        TClientData data = (dataPtr != nullptr) ? *dataPtr : defaultValue;
+        incomingMsg->Release();
+        return data;
     }
     
 } // ggj

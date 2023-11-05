@@ -46,7 +46,7 @@ int testNetworking()
         app.logger.critical("App initialization failed!");
     
     app.client.initialize();
-    app.client.connect(13337, "127.0.0.1");
+    app.client.connect(13338, "127.0.0.1");
     
     return 0;
 }

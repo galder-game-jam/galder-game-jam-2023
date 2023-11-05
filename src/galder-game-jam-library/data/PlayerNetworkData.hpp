@@ -13,6 +13,7 @@ namespace ggj
     class PlayerNetworkData
     {
         public:
+            bool isValid{}; //Will be false if object is just default
             raylib::Vector2 position{}; //
             uint8_t action{0}; //
             uint8_t animationState{0}; //
