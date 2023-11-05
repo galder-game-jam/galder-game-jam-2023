@@ -239,7 +239,8 @@ namespace ggj
             m_debugManager.setText(3, fmt::format("CameraPos: ({0}, {1})", (int) m_camera.target.x, (int) m_camera.target.y), color);
             m_debugManager.setText(4, fmt::format("Player1 score: {0}", (int) m_player->getScore()), color);
             m_debugManager.setText(5, fmt::format("Player2 score: {0}", (int) m_player2->getScore()), color);
-            m_debugManager.setText(6, fmt::format("Portal timer: {0}", (int) m_portal->getTimeUntilPortalOpens()), color);
+            m_debugManager.setText(6, fmt::format("Current leader: {0}", getLeadingPlayer()), color);
+            m_debugManager.setText(7, fmt::format("Portal timer: {0}", (int) m_portal->getTimeUntilPortalOpens()), color);
         }
 
         if (m_camera.target.x > m_cameraMax.x)
@@ -683,5 +684,14 @@ namespace ggj
         {
             layer.second.destroyMarkedObjects();
         }
+    }
+
+    std::string World::getLeadingPlayer() {
+        if(m_player->getScore() > m_player2->getScore())
+            return "player1";
+        if(m_player->getScore() < m_player2->getScore())
+            return "player2";
+        else
+            return "both";
     }
 }

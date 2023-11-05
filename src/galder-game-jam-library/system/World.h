@@ -56,6 +56,7 @@ namespace ggj
             void generatePowerUp(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
             void generateGenericPhysicsObject(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
             void destroyMarkedObjects();
+            std::string getLeadingPlayer();
 
             ggj::ILogger &m_logger;
             ggj::IResourceManager<ResourceName> &m_resources;
