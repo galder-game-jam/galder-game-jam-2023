@@ -40,6 +40,7 @@ namespace ggj
             bool initialize() override;
             void update(float timeDelta) override;
             void draw() override;
+            std::string getLeadingPlayer();
 
         private:
             //Generator logic

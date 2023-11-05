@@ -185,7 +185,7 @@ namespace ggj
                             f->SetSensor(generatorData.isTrigger);
                         }
 
-                        UserData userData{objectType, {userDataForceX, userDataForceY}, userdataCommand};
+                        UserData userData{objectType, {userDataForceX, userDataForceY}, userdataCommand, name};
                         generatorData.userData = userData;
 
                         generatorData.pos = pos;
@@ -239,7 +239,8 @@ namespace ggj
             m_debugManager.setText(3, fmt::format("CameraPos: ({0}, {1})", (int) m_camera.target.x, (int) m_camera.target.y), color);
             m_debugManager.setText(4, fmt::format("Player1 score: {0}", (int) m_player->getScore()), color);
             m_debugManager.setText(5, fmt::format("Player2 score: {0}", (int) m_player2->getScore()), color);
-            m_debugManager.setText(6, fmt::format("Portal timer: {0}", (int) m_portal->getTimeUntilPortalOpens()), color);
+            m_debugManager.setText(6, fmt::format("Current leader: {0}", getLeadingPlayer()), color);
+            m_debugManager.setText(7, fmt::format("Portal timer: {0}", (int) m_portal->getTimeUntilPortalOpens()), color);
         }
 
         if (m_camera.target.x > m_cameraMax.x)
@@ -637,7 +638,7 @@ namespace ggj
                                                                                                                         (float) generatorData.size.y),
                                                                                                                 spriteSize, r,
                                                                                                                 tex, generatorData.userData,
-                                                                                                                generatorData.velocity, m_portalTimer);
+                                                                                                                generatorData.velocity, m_portalTimer, this);
                 m_userDataManager.addUserData(body, m_portal);
             }
         }
@@ -683,5 +684,14 @@ namespace ggj
         {
             layer.second.destroyMarkedObjects();
         }
+    }
+
+    std::string World::getLeadingPlayer() {
+        if(m_player->getScore() > m_player2->getScore())
+            return m_player->getUserData()->getName();
+        if(m_player->getScore() < m_player2->getScore())
+            return m_player2->getUserData()->getName();
+        else
+            return "both";
     }
 }
