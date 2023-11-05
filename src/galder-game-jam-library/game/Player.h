@@ -31,7 +31,7 @@ namespace ggj
                 //Create hitbox
                 raylib::Vector2 hitboxPos = PhysicsObject::ConvertToVector2(m_body->GetPosition());
                 hitboxPos = raylib::Vector2(hitboxPos.GetX() + 16, hitboxPos.y);
-                m_hitbox.create(m_body->GetWorld(), hitboxPos, {16, 16});
+                m_hitbox.create(this, m_body->GetWorld(), hitboxPos, {16, 16});
             }
 
             [[nodiscard]] const Vector2 &getVelocity() const;

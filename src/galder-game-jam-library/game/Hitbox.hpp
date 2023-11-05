@@ -26,6 +26,8 @@ namespace ggj
             
             void create(PhysicsObject *owner, b2World *world, const raylib::Vector2 &position, const raylib::Vector2 &size, raylib::Color color = raylib::Color::Red())
             {
+                m_isLeftPos = false;
+                m_owner = owner;
                 m_size = size;
                 m_position = position;
                 m_origin = raylib::Vector2(size.x / 2, size.y / 2);
@@ -37,8 +39,28 @@ namespace ggj
             
             void beginContact(PhysicsObject *a, PhysicsObject *b, b2Contact *contact) override
             {
-                b2Body *body = contact->GetFixtureB()->GetBody();
-                body->ApplyLinearImpulseToCenter({5.f, -5.f}, true);
+                if(m_isActive && b != m_owner)
+                {
+                    b2Body *body = contact->GetFixtureB()->GetBody();
+                    body->ApplyLinearImpulseToCenter({m_isLeftPos ? -50.f : 50.f, -5.f}, true);
+                }
+            }
+            
+            
+            
+            /*!
+             * Position decides the type of knockback
+             * @param setLeft
+             */
+            void setLeftPosition(bool setLeft)
+            {
+                m_isLeftPos = setLeft;
+            }
+            
+            void setIsActive(bool isActive)
+            {
+                m_isActive = isActive;
+                m_body->SetEnabled(m_isActive);
             }
         
         protected:
@@ -75,7 +97,9 @@ namespace ggj
             }
             
         private:
-            PhysicsObject *owner {nullptr};
+            PhysicsObject *m_owner {nullptr};
+            bool m_isLeftPos {false};
+            bool m_isActive {false};
     };
     
 } // ggj
