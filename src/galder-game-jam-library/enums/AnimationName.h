@@ -32,6 +32,8 @@ namespace ggj
         PlayerJumpNG = 19,
         PlayerFallNG = 20,
         PowerUpCycle = 21,
+        PlayerAttackGroundedNG = 22,
+        PlayerAttackAirNG = 23
     };
 
 } // ggj

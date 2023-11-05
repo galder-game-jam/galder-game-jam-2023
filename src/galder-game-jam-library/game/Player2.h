@@ -52,6 +52,11 @@ namespace ggj
             raylib::Vector2 m_startPos{};
             bool m_hasClearedLevel {false};
             bool m_isDead {false};
+            
+            bool m_isAttacking {false};
+            uint16_t m_attackFrames {20}; //How many frames an attack takes
+            uint16_t m_attackCounter {0}; //Counts attack duration
+            
             int m_maxJumps{2};
             int m_jumps{0};
             int m_score{0};
