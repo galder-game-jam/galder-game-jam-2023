@@ -189,7 +189,7 @@
                          "name":"userdata_objecttype_enum",
                          "propertytype":"ObjectType",
                          "type":"int",
-                         "value":0
+                         "value":6
                         }],
                  "rotation":0,
                  "type":"PhysicsObject",
@@ -197,6 +197,102 @@
                  "width":32,
                  "x":368,
                  "y":464
+                }, 
+                {
+                 "height":32,
+                 "id":244,
+                 "name":"powerup",
+                 "properties":[
+                        {
+                         "name":"is_static",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"is_trigger",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"powerups-rpg-icons.png"
+                        }, 
+                        {
+                         "name":"sprite_size_x",
+                         "type":"int",
+                         "value":50
+                        }, 
+                        {
+                         "name":"sprite_size_y",
+                         "type":"int",
+                         "value":50
+                        }, 
+                        {
+                         "name":"userdata_objecttype",
+                         "type":"int",
+                         "value":4
+                        }, 
+                        {
+                         "name":"userdata_objecttype_enum",
+                         "propertytype":"ObjectType",
+                         "type":"int",
+                         "value":4
+                        }],
+                 "rotation":0,
+                 "type":"PhysicsObject",
+                 "visible":true,
+                 "width":32,
+                 "x":320,
+                 "y":672
+                }, 
+                {
+                 "height":32,
+                 "id":245,
+                 "name":"powerup",
+                 "properties":[
+                        {
+                         "name":"is_static",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"is_trigger",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"powerups-rpg-icons.png"
+                        }, 
+                        {
+                         "name":"sprite_size_x",
+                         "type":"int",
+                         "value":50
+                        }, 
+                        {
+                         "name":"sprite_size_y",
+                         "type":"int",
+                         "value":50
+                        }, 
+                        {
+                         "name":"userdata_objecttype",
+                         "type":"int",
+                         "value":4
+                        }, 
+                        {
+                         "name":"userdata_objecttype_enum",
+                         "propertytype":"ObjectType",
+                         "type":"int",
+                         "value":4
+                        }],
+                 "rotation":0,
+                 "type":"PhysicsObject",
+                 "visible":true,
+                 "width":32,
+                 "x":608,
+                 "y":672
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1235,7 +1331,7 @@
                  "type":"PhysicsObject",
                  "visible":true,
                  "width":16,
-                 "x":336,
+                 "x":400,
                  "y":672
                 }, 
                 {
@@ -2364,7 +2460,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":241,
+ "nextobjectid":246,
  "orientation":"orthogonal",
  "properties":[
         {
