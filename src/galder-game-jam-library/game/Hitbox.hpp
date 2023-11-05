@@ -34,7 +34,7 @@ namespace ggj
                 m_body = createBody(world, position, size);
                 m_color = color;
                 m_shape = ggj::PhysicsShape::Rectangle;
-                m_isVisible = true;
+                m_isVisible = false;
             }
             
             void beginContact(PhysicsObject *a, PhysicsObject *b, b2Contact *contact) override
@@ -42,7 +42,7 @@ namespace ggj
                 if(m_isActive && b != m_owner)
                 {
                     b2Body *body = contact->GetFixtureB()->GetBody();
-                    body->ApplyLinearImpulseToCenter({m_isLeftPos ? -50.f : 50.f, -5.f}, true);
+                    body->ApplyLinearImpulseToCenter({m_isLeftPos ? -50.f : 50.f, -2.f}, true);
                 }
             }
             

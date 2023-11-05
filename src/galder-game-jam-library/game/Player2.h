@@ -11,6 +11,7 @@
 #include "../enums/PlayerState.h"
 #include "../interfaces/system/IMapper.h"
 
+#include "Hitbox.hpp"
 
 namespace ggj
 {
@@ -26,6 +27,11 @@ namespace ggj
                 m_body->SetFixedRotation(true);
                 m_animation = m_animationManager.getAnimation(AnimationName::PlayerIdleNG);
                 m_startPos = ConvertToVector2(m_body->GetPosition());
+                
+                //Create hitbox
+                raylib::Vector2 hitboxPos = PhysicsObject::ConvertToVector2(m_body->GetPosition());
+                hitboxPos = raylib::Vector2(hitboxPos.GetX() + 16, hitboxPos.y);
+                m_hitbox.create(this, m_body->GetWorld(), hitboxPos, {16, 16});
             }
 
             [[nodiscard]] const Vector2 &getVelocity() const;
@@ -36,7 +42,8 @@ namespace ggj
             int getScore();
             void update(float timeDelta) override;
             void draw() override;
-
+            Hitbox *getHitbox();
+        
         private:
             void handleInputs(float timeDelta);
             void setPlayerState(PlayerState playerState);
@@ -52,7 +59,9 @@ namespace ggj
             raylib::Vector2 m_startPos{};
             bool m_hasClearedLevel {false};
             bool m_isDead {false};
+            bool m_isLeftPosition {false};
             
+            ggj::Hitbox m_hitbox{};
             bool m_isAttacking {false};
             uint16_t m_attackFrames {20}; //How many frames an attack takes
             uint16_t m_attackCounter {0}; //Counts attack duration

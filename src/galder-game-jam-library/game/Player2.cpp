@@ -3,12 +3,14 @@
 //
 
 #include "Player2.h"
+#include "Hitbox.hpp"
 
 namespace ggj
 {
     void Player2::draw()
     {
         PhysicsSprite::draw();
+        m_hitbox.draw();
     }
 
     void Player2::update(float timeDelta)
@@ -32,6 +34,8 @@ namespace ggj
             m_animation.update(timeDelta);
             m_drawingRect = m_animation.getDrawingRect();
         }
+        
+        m_hitbox.update(timeDelta);
     }
 
     void Player2::handleInputs(float timeDelta)
@@ -47,12 +51,16 @@ namespace ggj
         {
             if(m_inputManager.keyDown(KeyboardKey::Left) && !m_inputManager.keyDown(KeyboardKey::Right))
             {
+                m_isLeftPosition = true;
+                m_hitbox.setLeftPosition(true);
                 m_flip = true;
                 m_velocity = raylib::Vector2{-7.f, m_velocity.y};
                 if(m_velocity.y < 0.2f && m_velocity.y > -0.2f)
                     setPlayerState(PlayerState::Walk);
             } else if(m_inputManager.keyDown(KeyboardKey::Right) && !m_inputManager.keyDown(KeyboardKey::Left))
             {
+                m_isLeftPosition = false;
+                m_hitbox.setLeftPosition(false);
                 m_flip = false;
                 m_velocity = raylib::Vector2{7.f, m_velocity.y};
                 if(m_velocity.y < 0.2f && m_velocity.y > -0.2f)
@@ -127,6 +135,12 @@ namespace ggj
             }
             ++m_attackCounter;
         }
+        
+        m_hitbox.setIsActive(m_isAttacking);
+        if(m_isLeftPosition)
+            m_hitbox.getBody()->SetTransform(PhysicsObject::ConvertToB2Vec2({m_position.x-12, m_position.y-8}), 0);
+        else
+            m_hitbox.getBody()->SetTransform(PhysicsObject::ConvertToB2Vec2({m_position.x+12, m_position.y-8}), 0);
     }
 
     const Vector2 &Player2::getVelocity() const
@@ -184,5 +198,10 @@ namespace ggj
     void Player2::setHasClearedLevel(bool hasClearedLevel)
     {
         m_hasClearedLevel = hasClearedLevel;
+    }
+    
+    ggj::Hitbox *Player2::getHitbox()
+    {
+        return &m_hitbox;
     }
 } // dev

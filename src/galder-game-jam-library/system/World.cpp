@@ -352,7 +352,9 @@ namespace ggj
                                                                                                             (float) generatorData.size.y),
                                                                                             spriteSize, r,
                                                                                             tex, generatorData.userData);
+                Hitbox *hitbox = m_player2->getHitbox();
                 m_userDataManager.addUserData(body, m_player2);
+                m_userDataManager.addUserData(hitbox->getBody(), hitbox);
             }
         }
     }

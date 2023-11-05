@@ -59,6 +59,7 @@ namespace ggj
             raylib::Vector2 m_startPos{};
             bool m_hasClearedLevel {false};
             bool m_isDead {false};
+            bool m_isLeftPosition {false};
             
             ggj::Hitbox m_hitbox{};
             bool m_isAttacking {false};

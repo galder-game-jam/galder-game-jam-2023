@@ -50,6 +50,7 @@ namespace ggj
         {
             if(m_inputManager.keyDown(KeyboardKey::A) && !m_inputManager.keyDown(KeyboardKey::D))
             {
+                m_isLeftPosition = true;
                 m_hitbox.setLeftPosition(true);
                 m_flip = true;
                 m_velocity = raylib::Vector2{-7.f, m_velocity.y};
@@ -57,6 +58,7 @@ namespace ggj
                     setPlayerState(PlayerState::Walk);
             } else if(m_inputManager.keyDown(KeyboardKey::D) && !m_inputManager.keyDown(KeyboardKey::A))
             {
+                m_isLeftPosition = false;
                 m_hitbox.setLeftPosition(false);
                 m_flip = false;
                 m_velocity = raylib::Vector2{7.f, m_velocity.y};
@@ -133,6 +135,10 @@ namespace ggj
             ++m_attackCounter;
         }
         m_hitbox.setIsActive(m_isAttacking);
+        if(m_isLeftPosition)
+            m_hitbox.getBody()->SetTransform(PhysicsObject::ConvertToB2Vec2({m_position.x-12, m_position.y-8}), 0);
+        else
+            m_hitbox.getBody()->SetTransform(PhysicsObject::ConvertToB2Vec2({m_position.x+12, m_position.y-8}), 0);
     }
 
     const Vector2 &Player::getVelocity() const
