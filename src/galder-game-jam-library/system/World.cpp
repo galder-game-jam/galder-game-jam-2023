@@ -185,7 +185,7 @@ namespace ggj
                             f->SetSensor(generatorData.isTrigger);
                         }
 
-                        UserData userData{objectType, {userDataForceX, userDataForceY}, userdataCommand};
+                        UserData userData{objectType, {userDataForceX, userDataForceY}, userdataCommand, name};
                         generatorData.userData = userData;
 
                         generatorData.pos = pos;
@@ -638,7 +638,7 @@ namespace ggj
                                                                                                                         (float) generatorData.size.y),
                                                                                                                 spriteSize, r,
                                                                                                                 tex, generatorData.userData,
-                                                                                                                generatorData.velocity, m_portalTimer);
+                                                                                                                generatorData.velocity, m_portalTimer, this);
                 m_userDataManager.addUserData(body, m_portal);
             }
         }
@@ -688,9 +688,9 @@ namespace ggj
 
     std::string World::getLeadingPlayer() {
         if(m_player->getScore() > m_player2->getScore())
-            return "player1";
+            return m_player->getUserData()->getName();
         if(m_player->getScore() < m_player2->getScore())
-            return "player2";
+            return m_player2->getUserData()->getName();
         else
             return "both";
     }

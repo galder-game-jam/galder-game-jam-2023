@@ -1,4 +1,5 @@
 #include "Portal.h"
+#include "../../system/World.h"
 
 namespace ggj
 {
@@ -8,8 +9,11 @@ namespace ggj
         {
             if (!m_hasTeleported && m_activationTimer > m_activationTimeInSeconds)
             {
-                m_hasTeleported = true;
-                teleport();
+                if(m_world->getLeadingPlayer() == "both" || m_world->getLeadingPlayer() == b->getUserData()->getName())
+                {
+                    m_hasTeleported = true;
+                    teleport();
+                }
             }
         }
     }
