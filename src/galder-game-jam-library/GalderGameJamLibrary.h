@@ -21,13 +21,20 @@
 
 //Game
 #include "game/Player.h"
+#include "game/Player2.h"
 
 //Enemies
 #include "game/enemies/Bat.h"
 #include "game/enemies/Snake.h"
+#include "game/enemies/Spider.h"
+#include "game/enemies/Thing.h"
+#include "game/enemies/Ghost.h"
 
 // Collectibles
 #include "game/collectibles/Coin.h"
+
+//interactables
+#include "game/interactables/Portal.h"
 
 //Managers
 #include "managers/AnimationManager.h"

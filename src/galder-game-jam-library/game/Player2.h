@@ -2,8 +2,8 @@
 // Created by robin on 05.11.22.
 //
 
-#ifndef GAME_DEV_TEMPLATE_PLAYER_H
-#define GAME_DEV_TEMPLATE_PLAYER_H
+#ifndef GAME_DEV_TEMPLATE_PLAYER2_H
+#define GAME_DEV_TEMPLATE_PLAYER2_H
 
 #include "../graphics/PhysicsSprite.h"
 #include "../enums/KeyboardKey.h"
@@ -14,11 +14,11 @@
 
 namespace ggj
 {
-    class Player : public PhysicsSprite
+    class Player2 : public PhysicsSprite
     {
         public:
-            Player() = default;
-            Player(ggj::IInputManager<ggj::KeyboardKey> &inputManager, ggj::IAnimationManager<ggj::Animation, ggj::AnimationName> &animationManager, IMapper &mapper, b2Body *body, const raylib::Vector2 &physicsSize,
+            Player2() = default;
+            Player2(ggj::IInputManager<ggj::KeyboardKey> &inputManager, ggj::IAnimationManager<ggj::Animation, ggj::AnimationName> &animationManager, IMapper &mapper, b2Body *body, const raylib::Vector2 &physicsSize,
                    const raylib::Vector2 &spriteSize,
                    const raylib::Rectangle &drawingRect, raylib::Texture * texture, const UserData &userData, bool isVisible = true)
             : PhysicsSprite(body, physicsSize, spriteSize, drawingRect, texture, userData, isVisible), m_inputManager {inputManager}, m_animationManager {animationManager}, m_mapper{mapper}
@@ -59,4 +59,4 @@ namespace ggj
 
 } // dev
 
-#endif //GAME_DEV_TEMPLATE_PLAYER_H
+#endif //GAME_DEV_TEMPLATE_PLAYER2_H

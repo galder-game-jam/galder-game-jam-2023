@@ -10,9 +10,9 @@ namespace ggj
     {
         UserData* userDataB = b->getUserData();
 
-        if(userDataB->getCommand() == "pickup")
+        if(userDataB->getObjectType() == ObjectType::Player)
         {
-            pickup();
+            a->destroy();
         }
     }
 
@@ -30,10 +30,5 @@ namespace ggj
             m_animation.update(timeDelta);
             m_drawingRect = m_animation.getDrawingRect();
         }
-    }
-
-    void Coin::pickup()
-    {
-        //TODO: Implement pickup
     }
 } // ggj
