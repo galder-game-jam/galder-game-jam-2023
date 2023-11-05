@@ -135,6 +135,8 @@ namespace ggj
 
         if(b->getUserData()->getObjectType() == ObjectType::Enemy)
         {
+            if(m_score != 0)
+                --m_score;
             m_isDead = true;
         }
         if(b->getUserData()->getCommand() == "clear_level")
