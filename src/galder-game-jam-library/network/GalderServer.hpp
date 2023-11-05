@@ -131,19 +131,24 @@ namespace ggj
                         // Send them a welcome message
                         std::string helloMsg = fmt::format("Welcome to {0}, stranger.  I don't care about your name, so I'll just call you '{1}'.", m_info.getName(), nick);
                         //sendStringToClient( pInfo->m_hConn, helloMsg.c_str() );
-                        send(pInfo->m_hConn, {true, helloMsg});
+                        ServerNetworkData helloData = {false, 1000, ""};
+                        strcpy(helloData.message, helloMsg.c_str());
+                        send(pInfo->m_hConn, helloData); //helloMsg});
                         
                         // Also send them a list of everybody who is already connected
                         if ( m_mapClients.empty() )
                         {
-                            send(pInfo->m_hConn, {true, "Seems like you have no friends. Sadface :("});
+                            send(pInfo->m_hConn, {false, 2000, "Seems like you have no friends. Sadface :("});
                         }
                         else
                         {
                             sprintf( temp, "%d companions greet you:", (int)m_mapClients.size() );
                             for ( auto &c: m_mapClients )
                             {
-                                send(pInfo->m_hConn, {true, c.second.nick});
+                                ServerNetworkData data = {false, 3000, ""};
+                                strcpy(data.message, c.second.nick.c_str());
+                                
+                                send(pInfo->m_hConn, data);
                             }
                                 //sendStringToClient( pInfo->m_hConn, c.second.nick.c_str() );
                         }
@@ -214,7 +219,8 @@ namespace ggj
                         m_logger.information(playerInfo);
                         ServerNetworkData msg
                         {
-                            true,
+                            false,
+                            4000,
                             "I got your message. Good for you!"
                         };
                         

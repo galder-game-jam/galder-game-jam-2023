@@ -43,6 +43,7 @@ namespace ggj
         protected:
             bool send(HSteamNetConnection connection, const TServerData &data) override;
             TClientData receive(HSteamNetConnection connection) override;
+            TClientData receive() override;
             
             void pollIncomingMessages();
             void pollConnectionStateChanges();
@@ -454,10 +455,28 @@ namespace ggj
     bool Server<TServerData, TClientData>::send(HSteamNetConnection connection, const TServerData &data)
     {
         EResult result = m_netInterface->SendMessageToConnection(connection, &data, sizeof(data), k_nSteamNetworkingSend_Reliable, nullptr );
+        
         return result == k_EResultOK;
     }
+    
     template<class TServerData, class TClientData>
     TClientData Server<TServerData, TClientData>::receive(HSteamNetConnection connection)
+    {
+        static TClientData defaultValue {};
+        ISteamNetworkingMessage *incomingMsg = nullptr;
+        int numMsgs = m_netInterface->ReceiveMessagesOnConnection(connection, &incomingMsg, 1 );
+        if ( numMsgs == 0 || incomingMsg == nullptr )
+            return defaultValue;
+        
+        TClientData* dataPtr = static_cast<TClientData*>(incomingMsg->m_pData);
+        TClientData data = *dataPtr;
+        
+        incomingMsg->Release();
+        return data;
+    }
+    
+    template<class TServerData, class TClientData>
+    TClientData Server<TServerData, TClientData>::receive()
     {
         static TClientData defaultValue {};
         ISteamNetworkingMessage *incomingMsg = nullptr;
@@ -465,8 +484,9 @@ namespace ggj
         if ( numMsgs == 0 || incomingMsg == nullptr )
             return defaultValue;
         
-        TClientData *dataPtr = (TClientData*)incomingMsg->m_pData;
-        TClientData data = (dataPtr != nullptr) ? *dataPtr : defaultValue;
+        TClientData* dataPtr = static_cast<TClientData*>(incomingMsg->m_pData);
+        TClientData data = *dataPtr;
+        
         incomingMsg->Release();
         return data;
     }

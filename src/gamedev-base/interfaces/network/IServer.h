@@ -24,6 +24,7 @@ namespace ggj
         protected:
             virtual bool send(HSteamNetConnection connection, const TServerData &data) = 0;
             virtual TClientData receive(HSteamNetConnection connection) = 0;
+            virtual TClientData receive() = 0;
             virtual void serverProgram() = 0;
     };
 }

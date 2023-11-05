@@ -39,7 +39,7 @@ namespace ggj
             void ping() const override;
             void disconnect() const override;
             
-            void onSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t *pInfo);
+            virtual void onSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t *pInfo);
             
         protected:
             bool m_quit = false;
@@ -286,9 +286,12 @@ namespace ggj
         if ( numMsgs == 0 || incomingMsg == nullptr )
             return defaultValue;
 
-        TServerData* data = static_cast<TServerData*>(incomingMsg->m_pData);
+        TServerData* dataPtr = static_cast<TServerData*>(incomingMsg->m_pData);
+        TServerData data = *dataPtr;
+        
         incomingMsg->Release();
-        return *data;
+        
+        return data;
     }
     
 } // ggj

@@ -12,8 +12,9 @@ namespace ggj
     class ServerNetworkData
     {
         public:
-            bool isValid {};
-            std::string message {}; //Just sending a message, for now
+            bool isInvalid {true}; //0 = false, everything else is true.
+            uint32_t id{}; //Just an ID sent
+            char message[256];
     };
 }
 
