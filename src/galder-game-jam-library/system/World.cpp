@@ -233,11 +233,13 @@ namespace ggj
                                                 (float) (int) (std::round(m_player->getPosition().y) - (float) 600.f / 2))
                               : m_cameraDefault;
 
-            m_debugManager.setText(1, fmt::format("Player1Pos: ({0}, {1})", (int) m_player->getPosition().x, (int) m_player->getPosition().y));
-            m_debugManager.setText(2, fmt::format("Player2Pos: ({0}, {1})", (int) m_player2->getPosition().x, (int) m_player2->getPosition().y));
-            m_debugManager.setText(3, fmt::format("CameraPos: ({0}, {1})", (int) m_camera.target.x, (int) m_camera.target.y));
-            m_debugManager.setText(4, fmt::format("Player1 score: {0}", (int) m_player->getScore()));
-            m_debugManager.setText(5, fmt::format("Player2 score: {0}", (int) m_player2->getScore()));
+            Colori color = {0, 50, 150, 255};
+            m_debugManager.setText(1, fmt::format("Player1Pos: ({0}, {1})", (int) m_player->getPosition().x, (int) m_player->getPosition().y), color);
+            m_debugManager.setText(2, fmt::format("Player2Pos: ({0}, {1})", (int) m_player2->getPosition().x, (int) m_player2->getPosition().y), color);
+            m_debugManager.setText(3, fmt::format("CameraPos: ({0}, {1})", (int) m_camera.target.x, (int) m_camera.target.y), color);
+            m_debugManager.setText(4, fmt::format("Player1 score: {0}", (int) m_player->getScore()), color);
+            m_debugManager.setText(5, fmt::format("Player2 score: {0}", (int) m_player2->getScore()), color);
+            m_debugManager.setText(6, fmt::format("Portal timer: {0}", (int) m_portal->getTimeUntilPortalOpens()), color);
         }
 
         if (m_camera.target.x > m_cameraMax.x)
@@ -629,14 +631,14 @@ namespace ggj
 
                 raylib::Vector2 spriteSize = raylib::Vector2(r.width, r.height);
 
-                PhysicsObject *physicsObject = m_layers[generatorData.layerIndex].createGameObject<ggj::Portal>(m_animationManager, m_mapper, body,
+                m_portal = m_layers[generatorData.layerIndex].createGameObject<ggj::Portal>(m_animationManager, m_mapper, body,
                                                                                                                 raylib::Vector2(
                                                                                                                         (float) generatorData.size.x,
                                                                                                                         (float) generatorData.size.y),
                                                                                                                 spriteSize, r,
                                                                                                                 tex, generatorData.userData,
                                                                                                                 generatorData.velocity, m_portalTimer);
-                m_userDataManager.addUserData(body, physicsObject);
+                m_userDataManager.addUserData(body, m_portal);
             }
         }
     }

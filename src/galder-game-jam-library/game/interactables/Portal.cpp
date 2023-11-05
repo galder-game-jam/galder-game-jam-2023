@@ -58,4 +58,8 @@ namespace ggj
     {
         m_animation = m_animationManager.getAnimation(AnimationName::PortalIdle);
     }
+
+    float Portal::getTimeUntilPortalOpens() const {
+        return m_activationTimeInSeconds - m_activationTimer;
+    }
 } // ggj

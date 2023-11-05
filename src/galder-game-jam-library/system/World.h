@@ -78,6 +78,8 @@ namespace ggj
             Player *m_player = nullptr;
             Player2 *m_player2 = nullptr;
 
+            Portal *m_portal = nullptr;
+
             b2World m_world{{0.f, 0.f}};
             std::unique_ptr<tson::Map> m_map{nullptr};
 
