@@ -4748,6 +4748,39 @@
                 {
                  "ellipse":true,
                  "height":16,
+                 "id":189,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"is_static",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"is_trigger",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"coin.png"
+                        }, 
+                        {
+                         "name":"userdata_command",
+                         "type":"string",
+                         "value":""
+                        }],
+                 "rotation":0,
+                 "type":"PhysicsObject",
+                 "visible":true,
+                 "width":16,
+                 "x":138,
+                 "y":116.666666666667
+                }, 
+                {
+                 "ellipse":true,
+                 "height":16,
                  "id":169,
                  "name":"",
                  "properties":[
@@ -4810,7 +4843,8 @@
                  "width":16,
                  "x":304,
                  "y":12
-                }, 
+                },
+            
                 {
                  "ellipse":true,
                  "height":16,
@@ -4843,8 +4877,7 @@
                  "width":16,
                  "x":348.666666666667,
                  "y":159.333333333333
-                },
-            
+                }, 
                 {
                  "ellipse":true,
                  "height":16,
@@ -5339,6 +5372,82 @@
                  "width":16,
                  "x":432.666666666667,
                  "y":135.333333333333
+                }, 
+                {
+                 "height":32,
+                 "id":187,
+                 "name":"portal",
+                 "properties":[
+                        {
+                         "name":"is_static",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"is_trigger",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"portal.png"
+                        }, 
+                        {
+                         "name":"sprite_size_x",
+                         "type":"int",
+                         "value":32
+                        }, 
+                        {
+                         "name":"sprite_size_y",
+                         "type":"int",
+                         "value":32
+                        }, 
+                        {
+                         "name":"userdata_objecttype",
+                         "type":"int",
+                         "value":6
+                        }, 
+                        {
+                         "name":"userdata_objecttype_enum",
+                         "propertytype":"ObjectType",
+                         "type":"int",
+                         "value":6
+                        }],
+                 "rotation":0,
+                 "type":"PhysicsObject",
+                 "visible":true,
+                 "width":32,
+                 "x":416,
+                 "y":544
+                }, 
+                {
+                 "ellipse":true,
+                 "height":16,
+                 "id":188,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"is_static",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"is_trigger",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"coin.png"
+                        }],
+                 "rotation":0,
+                 "type":"PhysicsObject",
+                 "visible":true,
+                 "width":16,
+                 "x":203.333333333333,
+                 "y":1.33333333333333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -5396,7 +5505,7 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":187,
+ "nextobjectid":191,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -5428,6 +5537,11 @@
          "name":"gravity_y",
          "type":"float",
          "value":10
+        }, 
+        {
+         "name":"portal_timer",
+         "type":"int",
+         "value":30
         }],
  "renderorder":"left-down",
  "tiledversion":"1.10.2",
