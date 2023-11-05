@@ -76,18 +76,9 @@ namespace ggj
         add(ggj::ResourceName::GraphicsCharacterHudChar23, "graphics/character_hud/char23.png");
         add(ggj::ResourceName::GraphicsCharacterHudChar24, "graphics/character_hud/char24.png");
         add(ggj::ResourceName::GraphicsCharacterHudChar25, "graphics/character_hud/char25.png");
-        add(ggj::ResourceName::GraphicsEnemyGhostFlyingGhost1, "graphics/enemies/ghost/Flying/Ghost1.png");
-        add(ggj::ResourceName::GraphicsEnemyGhostFlyingGhost2, "graphics/enemies/ghost/Flying/Ghost2.png");
-        add(ggj::ResourceName::GraphicsEnemyGhostFlyingGhost3, "graphics/enemies/ghost/Flying/Ghost3.png");
-        add(ggj::ResourceName::GraphicsEnemyGhostFlyingGhost4, "graphics/enemies/ghost/Flying/Ghost4.png");
-        add(ggj::ResourceName::GraphicsEnemySpiderWalkSpider1, "graphics/enemies/spider/walk/spider1.png");
-        add(ggj::ResourceName::GraphicsEnemySpiderWalkSpider2, "graphics/enemies/spider/walk/spider2.png");
-        add(ggj::ResourceName::GraphicsEnemySpiderWalkSpider3, "graphics/enemies/spider/walk/spider3.png");
-        add(ggj::ResourceName::GraphicsEnemySpiderWalkSpider4, "graphics/enemies/spider/walk/spider4.png");
-        add(ggj::ResourceName::GraphicsEnemyThingWalkThing1, "graphics/enemies/thing/walk/thing1.png");
-        add(ggj::ResourceName::GraphicsEnemyThingWalkThing2, "graphics/enemies/thing/walk/thing2.png");
-        add(ggj::ResourceName::GraphicsEnemyThingWalkThing3, "graphics/enemies/thing/walk/thing3.png");
-        add(ggj::ResourceName::GraphicsEnemyThingWalkThing4, "graphics/enemies/thing/walk/thing4.png");
+        add(ggj::ResourceName::GraphicsEnemyGhostFlying, "graphics/enemies/ghost/Ghost.png");
+        add(ggj::ResourceName::GraphicsEnemySpiderWalk, "graphics/enemies/spider/spider.png");
+        add(ggj::ResourceName::GraphicsEnemyThingWalk, "graphics/enemies/thing/thing.png");
         add(ggj::ResourceName::GraphicsExplosion1, "graphics/explosions/explosion-1.png");
         add(ggj::ResourceName::GraphicsExplosion2, "graphics/explosions/explosion-2.png");
         add(ggj::ResourceName::GraphicsExplosion3, "graphics/explosions/explosion-3.png");
@@ -96,16 +87,16 @@ namespace ggj
         add(ggj::ResourceName::GraphicsExplosion6, "graphics/explosions/explosion-6.png");
         add(ggj::ResourceName::GraphicsHudUiBigPieces, "graphics/hud/ui_big_pieces.png");
         add(ggj::ResourceName::GraphicsMeleeSwoosh, "graphics/melee/swoosh.png");
-        add(ggj::ResourceName::GraphicsPlayerSpritemapGreenpants, "graphics/player/player-spritemap-v9-greenpants.png");
-        add(ggj::ResourceName::GraphicsPlayerSpritemapGreypants, "graphics/player/player-spritemap-v9-greypants.png");
-        add(ggj::ResourceName::GraphicsPlayerSpritemap, "graphics/player/player-spritemap-v9.png");
-        add(ggj::ResourceName::GraphicsPlayerSpritemapRedpants, "graphics/player/player-spritemap-v9-redpants.png");
+        add(ggj::ResourceName::GraphicsPlayerSpritemapGreenpants, "graphics/player/player-spritemap-greenpants.png");
+        add(ggj::ResourceName::GraphicsPlayerSpritemapGreypants, "graphics/player/player-spritemap-greypants.png");
+        add(ggj::ResourceName::GraphicsPlayerSpritemapBluepants, "graphics/player/player-spritemap-bluepants.png");
+        add(ggj::ResourceName::GraphicsPlayerSpritemapRedpants, "graphics/player/player-spritemap-redpants.png");
         add(ggj::ResourceName::GraphicsPowerupsRpgIcons, "graphics/powerups/rpg-icons.png");
-        add(ggj::ResourceName::GraphicsShootFireFire1, "graphics/shoot/fire/fire/fire1.png");
-        add(ggj::ResourceName::GraphicsShootFireFire2, "graphics/shoot/fire/fire/fire2.png");
+        add(ggj::ResourceName::GraphicsShootFire, "graphics/shoot/fire/fire.png");
         add(ggj::ResourceName::GraphicsTilesJungleTerrain, "graphics/tiles/jungle_terrain.png");
         add(ggj::ResourceName::GraphicsTilesObjects, "graphics/tiles/objects.png");
         add(ggj::ResourceName::GraphicsCoin, "graphics/coin/coin_full.png");
+        add(ggj::ResourceName::GraphicsPortal, "graphics/portal/portalRings.png");
     }
 
     template<class T>

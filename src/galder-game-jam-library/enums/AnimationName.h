@@ -19,6 +19,18 @@ namespace ggj
         EnemyBatDead = 6,
         EnemySnakeMove = 7,
         CoinSpin = 8,
+        EnemySpiderWalk = 9,
+        EnemyThingWalk = 10,
+        EnemyGhostFly = 11,
+        PortalIdle = 12,
+        PortalActive = 13,
+        PortalTeleport = 14,
+        PortalClosing = 15,
+        PortalClosed = 16,
+        PlayerIdleNG = 17,
+        PlayerWalkNG = 18,
+        PlayerJumpNG = 19,
+        PlayerFallNG = 20,
     };
 
 } // ggj

@@ -2,16 +2,16 @@
 // Created by robin on 05.11.22.
 //
 
-#include "Player.h"
+#include "Player2.h"
 
 namespace ggj
 {
-    void Player::draw()
+    void Player2::draw()
     {
         PhysicsSprite::draw();
     }
 
-    void Player::update(float timeDelta)
+    void Player2::update(float timeDelta)
     {
         if(m_body == nullptr)
             return;
@@ -34,20 +34,20 @@ namespace ggj
         }
     }
 
-    void Player::handleInputs(float timeDelta)
+    void Player2::handleInputs(float timeDelta)
     {
         //Should have a collection of commands or something assigned to the player for a best practice approach
         //But this is just meant to be a quick example
         b2Vec2 vel = m_body->GetLinearVelocity();
         m_velocity = raylib::Vector2{vel.x, vel.y};
-        if(m_inputManager.keyDown(KeyboardKey::A) && !m_inputManager.keyDown(KeyboardKey::D))
+        if(m_inputManager.keyDown(KeyboardKey::Left) && !m_inputManager.keyDown(KeyboardKey::Right))
         {
             m_flip = true;
             m_velocity = raylib::Vector2{-7.f, m_velocity.y};
             if(m_velocity.y < 0.2f && m_velocity.y > -0.2f)
                 setPlayerState(PlayerState::Walk);
         }
-        else if(m_inputManager.keyDown(KeyboardKey::D) && !m_inputManager.keyDown(KeyboardKey::A))
+        else if(m_inputManager.keyDown(KeyboardKey::Right) && !m_inputManager.keyDown(KeyboardKey::Left))
         {
             m_flip = false;
             m_velocity = raylib::Vector2{7.f, m_velocity.y};
@@ -60,7 +60,7 @@ namespace ggj
         }
 
         //Jump
-        if(m_inputManager.keyPressed(KeyboardKey::W) && m_jumps < m_maxJumps)
+        if(m_inputManager.keyPressed(KeyboardKey::Up) && m_jumps < m_maxJumps)
         {
             ++m_jumps;
             m_velocity = raylib::Vector2{m_velocity.x, m_velocity.y - 5.f};
@@ -105,17 +105,17 @@ namespace ggj
         }
     }
 
-    const Vector2 &Player::getVelocity() const
+    const Vector2 &Player2::getVelocity() const
     {
         return m_velocity;
     }
 
-    bool Player::cameraShouldFollowPlayer() const
+    bool Player2::cameraShouldFollowPlayer() const
     {
         return m_cameraShouldFollowPlayer;
     }
 
-    void Player::setPlayerState(PlayerState playerState)
+    void Player2::setPlayerState(PlayerState playerState)
     {
         if (m_playerState == playerState)
             return;
@@ -124,7 +124,7 @@ namespace ggj
         m_animation = m_animationManager.getAnimation(m_mapper.getAnimationNameByPlayerState(playerState));
     }
 
-    void Player::beginContact(PhysicsObject *a, PhysicsObject *b, b2Contact *contact)
+    void Player2::beginContact(PhysicsObject *a, PhysicsObject *b, b2Contact *contact)
     {
         b2Manifold *manifold = contact->GetManifold();
         b2WorldManifold worldManifold;
@@ -147,17 +147,17 @@ namespace ggj
         }
     }
 
-    int Player::getScore()
+    int Player2::getScore()
     {
         return m_score;
     }
 
-    bool Player::hasClearedLevel() const
+    bool Player2::hasClearedLevel() const
     {
         return m_hasClearedLevel;
     }
 
-    void Player::setHasClearedLevel(bool hasClearedLevel)
+    void Player2::setHasClearedLevel(bool hasClearedLevel)
     {
         m_hasClearedLevel = hasClearedLevel;
     }

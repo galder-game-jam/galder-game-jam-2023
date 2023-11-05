@@ -41,15 +41,21 @@ namespace ggj
             void update(float timeDelta) override;
             void draw() override;
 
+        private:
             //Generator logic
             void generatePhysicsObject(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
             void generatePlayer(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
+            void generatePlayer2(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
             void generateBat(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
             void generateSnake(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
             void generateCoin(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
+            void generateSpider(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
+            void generateThing(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
+            void generateGhost(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
+            void generatePortal(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
             void generateGenericPhysicsObject(const std::string &name, b2Body* body, const ObjectGeneratorData &generatorData);
+            void destroyMarkedObjects();
 
-        private:
             ggj::ILogger &m_logger;
             ggj::IResourceManager<ResourceName> &m_resources;
             IMapper &m_mapper;
@@ -66,7 +72,10 @@ namespace ggj
             raylib::Vector2 m_cameraMax {0.f, 0.f};
             raylib::Vector2 m_cameraDefault {0.f, 0.f};
 
+            int m_portalTimer{5};
+
             Player *m_player = nullptr;
+            Player2 *m_player2 = nullptr;
 
             b2World m_world{{0.f, 0.f}};
             std::unique_ptr<tson::Map> m_map{nullptr};

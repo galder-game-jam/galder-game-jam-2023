@@ -28,8 +28,9 @@ namespace ggj
 
             void update(float timeDelta) override;
             void draw() override;
+            void destroy() override;
 
-        private:
+    private:
             raylib::Texture *m_texture {nullptr};
             raylib::Rectangle m_drawingRect;
 

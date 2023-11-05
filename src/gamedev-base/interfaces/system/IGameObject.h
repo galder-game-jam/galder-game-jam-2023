@@ -23,6 +23,7 @@ namespace ggj
             [[nodiscard]] float getRotation() const { return m_rotation; }
             [[nodiscard]] float getScale() const    { return m_scale; }
             [[nodiscard]] bool isVisible() const    { return m_isVisible; }
+            [[nodiscard]] bool shouldBeDestroyed() const { return m_shouldBeDestroyed; }
 
             void setRotation(float rotation) { m_rotation = rotation; }
             void setScale(float scale) { m_scale = scale; }
@@ -32,6 +33,10 @@ namespace ggj
 
             virtual void update(float timeDelta) = 0;
             virtual void draw() = 0;
+            virtual void destroy()
+            {
+                m_shouldBeDestroyed = true;
+            }
 
         protected:
             float m_rotation {};
@@ -39,6 +44,7 @@ namespace ggj
             int32_t m_layer {};
             bool m_isVisible {};
             T m_position {};
+            bool m_shouldBeDestroyed{};
     };
 
 } // dev
