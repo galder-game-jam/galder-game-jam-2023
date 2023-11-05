@@ -35,6 +35,7 @@ namespace ggj
             if(m_teleportTime < 0)
             {
                 close();
+                m_world->setLevelCleared(true);
             }
         }
 
